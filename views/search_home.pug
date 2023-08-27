@@ -1,0 +1,34 @@
+extends base
+
+block content
+  h1 #[Strong Busca]
+  form(name="alter" method="post" action="/search")
+    div.form-group
+      - v = undefined === expr ? '' : expr
+      label(for='name') Expressão:
+      input#name.form-control(type="text", name="expr" required="true" placeholder="digite a expressão de busca aqui." value=v)
+
+      button(type="submit" class='btn btn-primary')
+        img(src="/image/ok-icon.svg" alt="Buscar" width="16pt" height="20pt")
+
+  h2 Componentes:
+
+  if components !== undefined
+    dl
+      each val in components
+        dd
+          a.btn.btn-primary(href='/component/'+val.id)
+            img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+          | &nbsp; #{val.name} &mdash; #{val.g_name} &nbsp;
+          each loc in clocs
+            #{loc.name} &nbsp;
+
+  h2 Partnumbers
+
+  if partnumbers !== undefined
+    dl
+      each val in partnumbers
+        dd
+          a.btn.btn-primary(href='/component/'+val.id)
+            img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+          | &nbsp; #{val.name} &mdash; #{val.g_name}: #{manufact_pn} (#{m_name}) &mdash; #{val.code} (#{val.s_name})

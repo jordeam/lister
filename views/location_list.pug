@@ -1,0 +1,25 @@
+extends base
+
+block content
+  h1 Lista das Localizações
+
+  p
+    form(name="location_new" method="post" action="/location/create" onsubmit="return location_create(this);")
+      input(type="hidden" name="locname" value="")
+      button.btn.btn-primary(type="submit")
+        img(src="/image/add-icon.svg" alt="Adicionar" width="16pt" height="20pt")
+
+  dl
+  each val in allLocations
+    dd
+      a(href=val.url class='btn btn-primary')
+        img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+      | &nbsp;  #{val.quant} &times; &nbsp; #{val.name}
+      if val.note.length > 0
+        | &nbsp; &mdash; #[i #{val.note}]
+
+
+  else
+    li Não existem localizações.
+
+  script(src="/script/location_new.js")

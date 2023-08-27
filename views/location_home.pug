@@ -1,0 +1,48 @@
+extends base
+
+block content
+  h1
+    a.btn.btn-primary(href="/location")
+      img(src="/image/back-icon.svg" alt="Voltar" width="16pt" height="20pt")
+    if entries.length === 0
+      | &nbsp;
+      a.btn.btn-primary(href=location.url+"/delete" onclick="return confirm('Tem certeza que quer excluir a localização?')" class='btn btn-primary')
+        img(src="/image/trash-icon.svg" alt="Excluir" width="16pt" height="20pt")
+    | &nbsp; #[Strong Localização:] #{location.name}
+  form(name="alter" method="post" action=location.url)
+    div.form-group
+      label(for='name') Nome:
+      input#name.form-control(type="text", placeholder="Nome" name="name" required="true" value=(undefined===location ? '' : location.name) )
+
+      label(for='note') Obs.:
+      input#note.form-control(type="text", placeholder="Observações e notas" name="note" value=(undefined===location ? '' : location.note) )
+
+      label(for='quant') Quantidade a fabricar:
+      input#quant.form-control(type="text", placeholder="Nome" name="quant" required="true" value=(undefined===location ? '' : location.quant) )
+
+      button(type="submit" class='btn btn-primary')
+        img(src="/image/ok-icon.svg" alt="Alterar" width="16pt" height="20pt")
+
+  p #[Strong Quantidade de caixas:] #{location.nbox}
+
+  p Componentes na localização:
+
+  a(href='/locationentry/create/'+location.id.toString() class='btn btn-primary')
+    img(src="/image/add-icon.svg" alt="Adicionar" width="16pt" height="20pt")
+
+  dl
+  each val in entries
+    dd
+      a(href='/locationentry/'+val.id.toString() class='btn btn-primary')
+        img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+      | &nbsp;
+      a(href='/locationentry/'+val.id.toString()+'/delete' onclick="return confirm('Tem certeza que quer excluir a entrada?');" class='btn btn-primary')
+        img(src="/image/trash-icon.svg" alt="Excluir" width="16pt" height="20pt")
+      | &nbsp; #{val.gname}: &nbsp;
+      a(href='/component/' + val.component_id.toString()) #[Strong #{val.cname}]
+      | &nbsp; | #[Strong quant:] #{val.quant}, #[Strong mult:] #{val.quant_unit}, #[Strong box:]#{val.box}, #[Strong labels:]#{val.labels}
+
+  else
+    li Não existem componentes nesta localização.
+
+  script(src="/script/component_new.js")

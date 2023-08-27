@@ -1,0 +1,30 @@
+extends base
+
+block content
+  h1 #[Strong Inserir componente]
+
+  h2
+    a(href=location.url class='btn btn-primary') L
+    | &nbsp; #[Strong Localização:] #{location.name}
+
+  p Escolha um componente
+
+  form(method='POST' action= '/locationentry/insert/'+location.id.toString())
+    p
+      select#sg(onchange="on_supergroup_changed(this);")
+        each sg in supergroups
+          option(value=sg.id selected=(sg.id === default_supergroup) ? "selected" : false) #{sg.name}
+    p
+      div#group
+        select(onchange="on_group_changed(this);")
+          each group in groups
+            option(value=group.id selected=(group.id === default_group) ? "selected" : false) #{group.name}
+    p
+      div#comp
+        select(name="component_id")
+          each comp in components
+            option(value=comp.id) #{comp.name}
+    p
+      button.btn.btn-primary(type='submit') Escolher
+
+  script(src='/script/locationentry_choose.js')

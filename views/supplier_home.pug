@@ -1,0 +1,42 @@
+extends base
+
+block content
+  h1 #[Strong Fornecedor:] #{supplier.name}
+
+  p
+    if supplier.name !== undefined && supplier.name.length > 0
+      a.btn.btn-primary(href="/supplier/")
+        img(src='/image/back-icon.svg' alt="Voltar" width="20pt" height="24pt")
+      a.btn.btn-primary(href="/supplier/"+supplier.id.toString()+'/delete')
+        img(src='/image/trash-icon.svg' alt="Excluir" width="20pt" height="24pt" onclick="return confirm('Tem certeza que quer excluir o fornecedor?');")
+
+  p Dados do fornecedor
+
+  form(method='POST' action=supplier.url)
+    div.form-group
+      label(for='name') Nome:
+      input#name.form-control(placeholder='Nome fantasia' name='name' value=supplier.name)
+
+      label(for='legalname') Razão Social:
+      input#legalname.form-control(placeholder='Razão Social' name='legalname' value=supplier.legalname)
+
+      label(for='federal_code') CNPJ:
+      input#federal_code.form-control(placeholder='Cadastro Nacional de Pessoa Jurídica' name='federal_code' value=supplier.federal_code)
+
+      label(for='state_code') I.E.:
+      input#state_code.form-control(placeholder='Inscrição Estadual' name='state_code' value=supplier.state_code)
+
+      label(for='city_code') I.M.:
+      input#city_code.form-control(placeholder='Inscrição Municipal' name='city_code' value=supplier.city_code)
+
+      label(for='phone') Fone:
+      input#phone.form-control(placeholder='Número de telefone' name='phone' value=supplier.phone)
+
+      label(for='fax') Endereço Eletrônico:
+      input#fax.form-control(placeholder='Endereço eletrônico' name='fax' value=supplier.fax)
+
+    button.btn.btn-primary(type='submit')
+      img(src='/image/ok-icon.svg' alt="Atualizar" width="20pt" height="24pt")
+
+
+  hr

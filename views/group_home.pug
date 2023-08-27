@@ -1,0 +1,33 @@
+extends base
+
+block content
+  h1
+    if allComponents.length === 0
+      a.btn.btn-primary(href=group.url+"/delete" onclick="return confirm('Tem certeza que quer excluir o grupo?')")
+        img(src="/image/trash-icon.svg" alt="Excluir" width="16pt" height="20pt")
+      | &nbsp;
+    | #[Strong Grupo:] #{group.name}
+
+  p
+    a(href=supergroup.url class='btn btn-primary') SG
+    | &nbsp; #[Strong Supergrupo:] #{supergroup.name}
+
+  p Lista dos componentes contidos neste grupo:
+
+  p
+    form(name="component_insert" method="post" action="/component/create/"+group.id onsubmit="return insert_component(this);")
+      input(type="hidden" name="name" value="")
+      button.btn.btn-primary(type="submit")
+        img(src="/image/add-icon.svg" alt="Adicionar" width="16pt" height="20pt")
+
+  dl
+  each val in allComponents
+    dd
+      a.btn.btn-primary(href='/component/'+val.id)
+        img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+      | &nbsp; #{val.name}
+
+  else
+    li Não existem componentes neste grupo.
+
+  script(src="/script/component_new.js")

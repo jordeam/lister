@@ -1,0 +1,28 @@
+extends base
+
+block content
+  h1
+    a(href=location.url class='btn btn-primary') L
+    | &nbsp; #[Strong Localização:] #{location.name}
+
+  h2
+    a(href=component.url class='btn btn-primary') C
+    | &nbsp; #[Strong Componente:] #{component.name} (#{group.name})
+
+  form(method='POST' action= locationentry.url)
+    div.form-group
+      label(for='box') Caixa:
+      input#name.form-control(type='text', placeholder='Número da caixa' name='box' required='true' value=(undefined===locationentry ? '' : locationentry.box) )
+
+      label(for='quant') Quantidade atual em estoque:
+      input#name.form-control(type='text', placeholder='Quantidade' name='quant' required='true' value=(undefined===locationentry ? '' : locationentry.quant) )
+
+      label(for='quant_unit') Utilizados por montagem (por placa):
+      input#name.form-control(type='text', placeholder='Quantidade utilizada por projeto' name='quant_unit' required='true' value=(undefined===locationentry ? '' : locationentry.quant_unit) )
+
+      label(for='labels') #[Italic Label(s)] no esquemático:
+      input#name.form-control(type='text', placeholder='Labels dos componentes' name='labels' value=(undefined===locationentry ? '' : locationentry.labels) )
+
+    button.btn.btn-primary(type='submit')
+      img(src="/image/ok-icon.svg" alt="Alterar" width="16pt" height="20pt")
+

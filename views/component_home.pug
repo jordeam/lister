@@ -1,0 +1,84 @@
+extends base
+
+block content
+  h1
+    if locations.length === 0 && suppliercodes.length === 0
+      a.btn.btn-primary(href="/component/"+component.id+"/delete" onclick="return confirm('Tem certeza que quer excluir o componente?')")
+        img(src="/image/trash-icon.svg" alt="Excluir" width="16pt" height="20pt")
+      | &nbsp;
+    | #[Strong Componente:] #{component.name}
+
+
+  form(method='POST' action= '/component/'+component.id.toString())
+    div.form-group
+      input#name.form-control(type='text', placeholder='Código do componente' name='name' required='true' value=(undefined===component ? '' : component.name) )
+
+    button.btn.btn-primary(type='submit')
+      img(src="/image/ok-icon.svg" alt="Alterar" width="16pt" height="20pt")
+
+  hr
+
+  p
+    a.btn.btn-primary(href='/group/' + component.group_id) G
+    | &nbsp; #[Strong Grupo:] #{group.name}
+
+  p
+    a.btn.btn-primary(href='/case/' + component.case_id) CS
+    | &nbsp; #[Strong Case:] #{ccase.name}
+
+  hr
+
+  h2 Localizado em:
+
+  ul
+  each val in locations
+    li
+      a(href=val.url) #{val.name}
+
+  hr
+
+  h2 Inserir em:
+
+  form(name="location_insert" method="post" action="/locationentry/insert/"+component.id.toString())
+    div.form-group
+      select.form-control(name="location_id")
+        each loc in allLocations
+          option(value=loc.id ) #{loc.name}
+
+    button.btn.btn-primary(type="submit") Inserir
+
+  hr
+
+  h2 Códigos de Compra
+
+  if suppliercodes.length === 0
+    p Sem códigos de fornecedores
+  else
+    table
+      tr
+        th
+        th Fornecedor
+        th Cód. Fornecedor
+        th Arredondamento
+        th Ativo
+        th Part Number
+        th Fabricante
+      each val in suppliercodes
+        tr
+          td
+            a.btn.btn-primary(href="/suppliercode/"+val.id.toString())
+              img(src="/image/edit-icon.svg" alt="Editar"  width="20pt" height="24pt")
+          td #{val.s_name}
+          td #{val.code}
+          td #{val.rounding}
+          td #{val.active}
+          td #{val.manufact_pn}
+          td #{val.m_name}
+
+  p
+    form(method="post" action="/suppliercode/create/"+component.id onsubmit="return insert_with_msg('Partnumber:', this.partnumber);")
+      input(type="hidden" name="partnumber" value="")
+      button.btn.btn-primary(type="submit")
+        img(src="/image/add-icon.svg" alt="Adicionar" width="20pt" height="24pt")
+
+  script(src="/script/component_new.js")

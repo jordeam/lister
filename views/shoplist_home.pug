@@ -1,0 +1,11 @@
+extends base
+
+block content
+  h1 Lista de Compras dos Componentes
+
+  ul
+  each sl in shoplist
+    li #{sl.gname}, #{sl.cname}, #{sl.in_stock}
+
+  else
+    li Não existem localizações selecionadas.

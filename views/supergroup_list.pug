@@ -1,0 +1,21 @@
+extends base
+
+block content
+  h1 Lista dos Supergrupos
+  p
+    form(method="post" action="/supergroup/create" onsubmit="return insert_with_msg('Nome do novo supergrupo:', this.name);")
+      input(type="hidden" name="name" value="")
+      button.btn.btn-primary(type="submit")
+        img(src="/image/add-icon.svg" alt="Adicionar" width="16pt" height="20pt")
+
+  dd
+  each val in supergroups_list
+    dl
+      a.btn.btn-primary(href=val.url)
+        img(src="/image/edit-icon.svg" alt="Editar"  width="16pt" height="20pt")
+      | &nbsp; #{val.name}
+
+  else
+    li Não existem supergrupos.
+
+  script(src="/script/component_new.js")

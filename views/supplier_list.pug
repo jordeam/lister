@@ -1,0 +1,20 @@
+extends base
+
+block content
+  h1 Lista de Fornecedores
+
+  p
+    form(method="post" action="/supplier/create" onsubmit="return insert_with_msg('Nome do fornecedor:', this.name);")
+      input(type="hidden" name="name" value="")
+      button.btn.btn-primary(type="submit")
+        img(src='/image/add-icon.svg' alt="Adicionar" width="20pt" height="24pt")
+
+  ul
+  each val in suppliers_list
+    li
+      a(href='/supplier/' + val.id.toString()) #{val.name}
+
+  else
+    li Não existem fornecedores.
+
+  script(src="/script/component_new.js")
