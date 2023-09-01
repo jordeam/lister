@@ -13,10 +13,9 @@ const Supplier = seqlz.define("supplier", {
   url: {
     type: DataTypes.VIRTUAL,
     get() {
-      return '/supplier/' + this.id.toString();
+      return '/supplier/' + this.id;
     }
   }
-
 },
                            {
                              timestamps: false,

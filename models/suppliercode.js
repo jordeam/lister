@@ -15,7 +15,7 @@ const Suppliercode = seqlz.define("suppliercode", {
   url: {
     type: DataTypes.VIRTUAL,
     get() {
-      return '/suppliercode/' + this.id.toString();
+      return '/suppliercode/' + this.id;
     }
   }
 },

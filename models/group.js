@@ -8,7 +8,7 @@ const Group = seqlz.define("group", {
   url: {
     type: DataTypes.VIRTUAL,
     get() {
-      return '/group/'+this.id.toString();
+      return '/group/'+this.id;
     }
   }
 },

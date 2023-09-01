@@ -9,7 +9,7 @@ const Manufacturers = seqlz.define("manufacturers", {
   url: {
     type: DataTypes.VIRTUAL,
     get() {
-      return '/manufacturer/'+this.id.toString();
+      return '/manufacturer/'+this.id;
     }
   }
 },

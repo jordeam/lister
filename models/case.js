@@ -8,7 +8,7 @@ const Case = seqlz.define("case", {
   url: {
         type: DataTypes.VIRTUAL,
         get() {
-            return '/case/'+this.id.toString();
+            return '/case/'+this.id;
         }
     }
 },

@@ -7,7 +7,7 @@ const SuperGroup = seqlz.define("supergroup", {
   url: {
     type: DataTypes.VIRTUAL,
     get() {
-      return '/supergroup/'+this.id.toString();
+      return '/supergroup/'+this.id;
     }
   }
 },

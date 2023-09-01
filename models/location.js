@@ -10,7 +10,7 @@ const Location = seqlz.define("location", {
     url: {
         type: DataTypes.VIRTUAL,
         get() {
-            return '/location/'+this.id.toString();
+            return '/location/'+this.id;
         }
     }
 },

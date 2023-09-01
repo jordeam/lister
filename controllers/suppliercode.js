@@ -44,14 +44,14 @@ exports.update = asyncHandler(async (req, res, next) => {
   const suppliercode = await Suppliercode.findOne({where: {id: req.params.id}});
   if (suppliercode === null) {
     // No results.
-    const err = new Error("Fornecedor não encontrado.");
+    const err = new Error("Entrada de código de compra não encontrada.");
     err.status = 404;
     return next(err);
   }
 
   await Suppliercode.update({
-    manufact_pn: req.body.partnumber,
-    code:req.body.code,
+    manufact_pn: req.body.manufact,
+    code: req.body.code,
     supplier_id: req.body.supplier,
     manufact_id: req.body.manufact,
   }, {where: {id: req.params.id}});
@@ -68,7 +68,7 @@ exports.create = asyncHandler(async (req, res, next) => {
 
     await suppliercode.save();
 
-    res.redirect("/suppliercode/"+suppliercode.id.toString());
+    res.redirect("/suppliercode/"+suppliercode.id);
 });
 
 // Display Suppliercode create form on GET
