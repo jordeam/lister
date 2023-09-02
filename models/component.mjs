@@ -1,5 +1,5 @@
-const { seqlz, testDbConnection } = require("../db");
-const { DataTypes } = require("sequelize");
+import { seqlz } from "../db.js";
+import { DataTypes } from "sequelize";
 
 const Component = seqlz.define("component", {
   id: { type: DataTypes.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true, unique: true },
@@ -18,4 +18,4 @@ const Component = seqlz.define("component", {
     raw: true
   });
 
-module.exports = Component;
+export default Component;

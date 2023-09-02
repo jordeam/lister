@@ -1,15 +1,16 @@
-const { seqlz } = require('../db');
-const { QueryTypes} = require('sequelize');
-const Component = require("../models/component");
-const asyncHandler = require("express-async-handler");
+import { seqlz } from '../db.js';
+import { QueryTypes} from 'sequelize';
 
+import asyncHandler from "express-async-handler";
+
+const controller = {};
 
 // List all components of a location
-exports.get = asyncHandler(async (req, res, next) => {
+controller.get = asyncHandler(async (req, res, next) => {
   res.render("search_home");
 });
 
-exports.post = asyncHandler(async (req, res, next) => {
+controller.post = asyncHandler(async (req, res, next) => {
   const components = await seqlz.query("SELECT c.id, c.name, g.name AS g_name FROM components AS c, groups AS g WHERE g.id = c.group_id AND c.name ~ $1",
                                     {
                                       bind: [req.body.expr],
@@ -38,3 +39,5 @@ exports.post = asyncHandler(async (req, res, next) => {
     partnumbers,
   });
 });
+
+export default controller;

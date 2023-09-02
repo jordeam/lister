@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-import shoplistController from "../controllers/shoplist.js";
+import shoplistController from "../controllers/shoplist.mjs";
 
 /// Shop List ///
 

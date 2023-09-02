@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-import searchController from "../controllers/search.js";
+import searchController from "../controllers/search.mjs";
 
 /// PET ROUTES ///
 

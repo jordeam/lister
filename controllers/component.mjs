@@ -1,17 +1,19 @@
-const { seqlz } = require('../db');
-const {QueryTypes, Op} = require('sequelize');
-const Location = require("../models/location");
-const Case = require('../models/case');
-const Group = require('../models/group');
-const Component = require("../models/component");
-const LocationEntry = require('../models/locationentry');
+import { seqlz } from '../db.js';
+import {QueryTypes, Op} from 'sequelize';
+import Location from "../models/location.js";
+import Case from '../models/case.mjs';
+import Group from '../models/group.mjs';
+import Component from "../models/component.mjs";
+import LocationEntry from '../models/locationentry.js';
 
-const asyncHandler = require("express-async-handler");
+import asyncHandler from "express-async-handler";
+
+const controller = {};
 
 // Show component data
-exports.home = asyncHandler(async (req, res, next) => {
+controller.home = asyncHandler(async (req, res, next) => {
   // Get details of supergroup and all associated pets (in parallel)
-  comp = await Component.findOne({ where: { id: req.params.id } });
+  const comp = await Component.findOne({ where: { id: req.params.id } });
 
   if (comp === null) {
     // No results.
@@ -51,7 +53,7 @@ exports.home = asyncHandler(async (req, res, next) => {
   });
 });
 
-exports.update = asyncHandler(async (req, res, next) => {
+controller.update = asyncHandler(async (req, res, next) => {
     console.log("Aqui!");
     console.log(`id=${req.params.id}`);
     console.log(`name=${req.body.name}`);
@@ -63,7 +65,7 @@ exports.update = asyncHandler(async (req, res, next) => {
 
 // Paramameters:
 // :id is the id of group
-exports.select = asyncHandler(async (req, res, next) => {
+controller.select = asyncHandler(async (req, res, next) => {
     const allComponents = await Component.findAll({where: {group_id: req.params.id}, order: [['name']]});
 
     res.render('component_select', {
@@ -73,14 +75,14 @@ exports.select = asyncHandler(async (req, res, next) => {
 
 // Paramameters:
 // id: is the id of group
-exports.create = asyncHandler(async (req, res, next) => {
+controller.create = asyncHandler(async (req, res, next) => {
     const component = await Component.create({group_id: req.params.id, name: req.body.name, case_id: 0});
     res.redirect('/component/'+component.id);
 });
 
 // Paramameters:
 // id: is the id of component
-exports.delete = asyncHandler(async (req, res, next) => {
+controller.delete = asyncHandler(async (req, res, next) => {
     const comp = await Component.findOne({where: {id: req.params.id}});
     const group_id = comp.group_id;
     // must destroy all location entries
@@ -88,3 +90,5 @@ exports.delete = asyncHandler(async (req, res, next) => {
     await comp.destroy();
     res.redirect('/group/'+group_id.toString());
 });
+
+export default controller;

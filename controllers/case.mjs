@@ -1,10 +1,12 @@
-const { seqlz } = require('../db');
-const Case = require("../models/case");
+import { seqlz } from '../db.js';
+import Case from "../models/case.mjs";
 
-const asyncHandler = require("express-async-handler");
+import asyncHandler from "express-async-handler";
+
+const controller = {};
 
 // Display list of all Case.
-exports.list = asyncHandler(async (req, res, next) => {
+controller.list = asyncHandler(async (req, res, next) => {
     const allCases = await Case.findAll({order: seqlz.col('name')});
     res.render("case_list", {
         cases_list: allCases,
@@ -12,7 +14,7 @@ exports.list = asyncHandler(async (req, res, next) => {
 });
 
 // Display detail page for a specific Case.
-exports.home = asyncHandler(async (req, res, next) => {
+controller.home = asyncHandler(async (req, res, next) => {
   // Get details of case and all associated pets (in parallel)
   const ccase = await Case.findOne({where: {id: req.params.id}});
   if (ccase === null) {
@@ -27,7 +29,7 @@ exports.home = asyncHandler(async (req, res, next) => {
   });
 });
 
-exports.update = asyncHandler(async (req, res, next) => {
+controller.update = asyncHandler(async (req, res, next) => {
   const ccase = await Case.findOne({where: {id: req.params.id}});
 
   ccase.name = req.body.name;
@@ -38,3 +40,4 @@ exports.update = asyncHandler(async (req, res, next) => {
   res.redirect('/case/');
 });
 
+export default controller;

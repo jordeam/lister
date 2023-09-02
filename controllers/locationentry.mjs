@@ -1,14 +1,15 @@
-const Location = require("../models/location");
-const LocationEntry = require("../models/locationentry");
-const Component = require("../models/component");
-const asyncHandler = require("express-async-handler");
-const Group = require('../models/group');
-const SuperGroup = require('../models/supergroup');
+import Location from "../models/location.js";
+import LocationEntry from "../models/locationentry.js";
+import Component from "../models/component.mjs";
+import asyncHandler from "express-async-handler";
+import Group from '../models/group.mjs';
+import SuperGroup from '../models/supergroup.js';
 
+const controller = {};
 
 // Edit a location entry
 // need to pass locationentry, component, and location
-exports.home = asyncHandler(async (req, res, next) => {
+controller.home = asyncHandler(async (req, res, next) => {
     const locationEntry = await LocationEntry.findOne({where: {id: req.params.id}});
 
     if (locationEntry === null) {
@@ -32,7 +33,7 @@ exports.home = asyncHandler(async (req, res, next) => {
     });
 });
 
-exports.update = asyncHandler(async (req, res, next) => {
+controller.update = asyncHandler(async (req, res, next) => {
     const locationEntry = await LocationEntry.findOne({where: {id: req.params.id}});
 
     if (locationEntry === null) {
@@ -51,7 +52,7 @@ exports.update = asyncHandler(async (req, res, next) => {
     res.redirect('/location/'+locationEntry.location_id.toString());
 });
 
-exports.delete = asyncHandler(async (req, res, next) => {
+controller.delete = asyncHandler(async (req, res, next) => {
   const locationEntry = await LocationEntry.findOne({ where: { id: req.params.id } });
 
   if (locationEntry === null) {
@@ -67,7 +68,7 @@ exports.delete = asyncHandler(async (req, res, next) => {
 });
 
 
-exports.choose = asyncHandler(async (req, res, next) => {
+controller.choose = asyncHandler(async (req, res, next) => {
     const location = await Location.findOne({where: {id: req.params.location_id}});
     const allSuperGroups = await SuperGroup.findAll({order: [['name']]});
     const default_supergroup = 1;
@@ -86,7 +87,7 @@ exports.choose = asyncHandler(async (req, res, next) => {
     });
 });
 
-exports.insert = asyncHandler(async (req, res, next) => {
+controller.insert = asyncHandler(async (req, res, next) => {
     const location_id = (undefined === req.body.location_id) ? req.params.id : req.body.location_id;
     const component_id = (undefined === req.body.component_id) ? req.params.id : req.body.component_id;
 
@@ -94,3 +95,4 @@ exports.insert = asyncHandler(async (req, res, next) => {
     res.redirect("/locationentry/"+locationEntry.id.toString());
 });
 
+export default controller;

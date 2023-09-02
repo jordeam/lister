@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 // Require Controllers.
-import locationEntryController from "../controllers/locationentry.js";
+import locationEntryController from "../controllers/locationentry.mjs";
 
 // GET location entries
 router.get("/:id", locationEntryController.home);

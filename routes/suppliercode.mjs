@@ -3,7 +3,7 @@ import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-import suppliercodeController from "../controllers/suppliercode.js";
+import suppliercodeController from "../controllers/suppliercode.mjs";
 
 /// PET ROUTES ///
 

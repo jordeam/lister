@@ -1,11 +1,13 @@
-const { seqlz } = require('../db');
-const Supplier = require("../models/supplier");
+import { seqlz } from '../db.js';
+import Supplier from "../models/supplier.js";
 
-const asyncHandler = require("express-async-handler");
+import asyncHandler from "express-async-handler";
 // const { param } = require('../app');
 
+const controller = {};
+
 // Display list of all Supplier.
-exports.list = asyncHandler(async (req, res, next) => {
+controller.list = asyncHandler(async (req, res, next) => {
     const allSuppliers = await Supplier.findAll({attributes: ['id', 'name'], order: seqlz.col('name')});
     res.render("supplier_list", {
         suppliers_list: allSuppliers,
@@ -13,7 +15,7 @@ exports.list = asyncHandler(async (req, res, next) => {
 });
 
 // Display detail page for a specific Supplier.
-exports.home = asyncHandler(async (req, res, next) => {
+controller.home = asyncHandler(async (req, res, next) => {
   // Get details of supplier and all associated pets (in parallel)
   const supplier = await Supplier.findOne({where: {id: req.params.id}});
   if (supplier === null) {
@@ -29,7 +31,7 @@ exports.home = asyncHandler(async (req, res, next) => {
 });
 
 // update data for a specific Supplier.
-exports.update = asyncHandler(async (req, res, next) => {
+controller.update = asyncHandler(async (req, res, next) => {
   // Get details of supplier and all associated pets (in parallel)
   const supplier = await Supplier.findOne({where: {id: req.params.id}});
   if (supplier === null) {
@@ -53,7 +55,7 @@ exports.update = asyncHandler(async (req, res, next) => {
 });
 
 // Display Supplier create form on GET
-exports.create = asyncHandler(async (req, res, next) => {
+controller.create = asyncHandler(async (req, res, next) => {
     const supplier = new Supplier({
       name: req.body.name,
     });
@@ -64,8 +66,9 @@ exports.create = asyncHandler(async (req, res, next) => {
 });
 
 // Display Supplier create form on GET
-exports.delete = asyncHandler(async (req, res, next) => {
+controller.delete = asyncHandler(async (req, res, next) => {
   await Supplier.destroy({ where: { id: req.params.id }});
   res.redirect("/supplier/");
 });
 
+export default controller;

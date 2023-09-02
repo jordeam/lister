@@ -1,5 +1,5 @@
-const { seqlz } = require("../db");
-const { DataTypes } = require("sequelize");
+import { seqlz } from "../db.js";
+import { DataTypes } from "sequelize";
 
 const Case = seqlz.define("case", {
   id: { type: DataTypes.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true, unique: true },
@@ -17,4 +17,4 @@ const Case = seqlz.define("case", {
     raw: true
   });
 
-module.exports = Case;
+export default Case;

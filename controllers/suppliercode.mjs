@@ -1,16 +1,17 @@
-const { seqlz } = require('../db');
-const {Sequelize, Op} = require('sequelize');
-const Suppliercode = require("../models/suppliercode");
-const Supplier = require("../models/supplier");
-const Manufacturer = require("../models/manufacturer");
-const Component = require('../models/component');
-const Group = require('../models/group');
+import { seqlz } from '../db.js';
+import {Sequelize, Op} from 'sequelize';
+import Suppliercode from "../models/suppliercode.js";
+import Supplier from "../models/supplier.js";
+import Manufacturer from "../models/manufacturer.js";
+import Component from '../models/component.mjs';
+import Group from '../models/group.mjs';
 
-const asyncHandler = require("express-async-handler");
-// const { param } = require('../app');
+import asyncHandler from "express-async-handler";
+
+const controller = {};
 
 // Display detail page for a specific Suppliercode.
-exports.home = asyncHandler(async (req, res, next) => {
+controller.home = asyncHandler(async (req, res, next) => {
   // Get details of suppliercode and all associated pets (in parallel)
   const suppliercode = await Suppliercode.findOne({where: {id: req.params.id}});
 
@@ -39,7 +40,7 @@ exports.home = asyncHandler(async (req, res, next) => {
 });
 
 // update data for a specific Suppliercode.
-exports.update = asyncHandler(async (req, res, next) => {
+controller.update = asyncHandler(async (req, res, next) => {
   // Get details of suppliercode and all associated pets (in parallel)
   const suppliercode = await Suppliercode.findOne({where: {id: req.params.id}});
   if (suppliercode === null) {
@@ -60,7 +61,7 @@ exports.update = asyncHandler(async (req, res, next) => {
 });
 
 // Display Suppliercode create form on GET
-exports.create = asyncHandler(async (req, res, next) => {
+controller.create = asyncHandler(async (req, res, next) => {
     const suppliercode = new Suppliercode({
       manufact_pn: req.body.partnumber,
       component_id: req.params.id,
@@ -72,10 +73,11 @@ exports.create = asyncHandler(async (req, res, next) => {
 });
 
 // Display Suppliercode create form on GET
-exports.delete = asyncHandler(async (req, res, next) => {
+controller.delete = asyncHandler(async (req, res, next) => {
   const sc = await Suppliercode.findOne({where: {id: req.params.id}});
   const component_id = sc.component_id;
   await sc.destroy();
   res.redirect("/component/"+component_id);
 });
 
+export default controller;

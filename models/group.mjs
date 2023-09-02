@@ -1,5 +1,5 @@
-const { seqlz, testDbConnection } = require("../db");
-const { DataTypes } = require("sequelize");
+import { seqlz } from "../db.js";
+import { DataTypes } from "sequelize";
 
 const Group = seqlz.define("group", {
   id: { type: DataTypes.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true, unique: true },
@@ -17,4 +17,4 @@ const Group = seqlz.define("group", {
                           raw: true
                         });
 
-module.exports = Group;
+export default Group;

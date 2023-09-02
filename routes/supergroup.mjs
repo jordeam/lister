@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-import supergroupController from "../controllers/supergroup.js";
+import supergroupController from "../controllers/supergroup.mjs";
 
 /// PET ROUTES ///
 

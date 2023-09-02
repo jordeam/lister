@@ -1,11 +1,12 @@
-const { seqlz } = require('../db');
-const { QueryTypes} = require('sequelize');
-const Location = require("../models/location");
-const asyncHandler = require("express-async-handler");
+import { seqlz } from '../db.js';
+import { QueryTypes} from 'sequelize';
+import Location from "../models/location.js";
+import asyncHandler from "express-async-handler";
 
+const controller = {};
 
 // List all locations
-exports.list = asyncHandler(async (req, res, next) => {
+controller.list = asyncHandler(async (req, res, next) => {
   const allLocations = await Location.findAll({order: seqlz.col('name')});
   res.render("location_list", {
     allLocations,
@@ -13,7 +14,7 @@ exports.list = asyncHandler(async (req, res, next) => {
 });
 
 // List all components of a location
-exports.home = asyncHandler(async (req, res, next) => {
+controller.home = asyncHandler(async (req, res, next) => {
   // Get details of supergroup and all associated pets (in parallel)
   const [entries, loc] =
         await Promise.all(
@@ -35,7 +36,7 @@ exports.home = asyncHandler(async (req, res, next) => {
 });
 
 // List all components of a location
-exports.update = asyncHandler(async (req, res, next) => {
+controller.update = asyncHandler(async (req, res, next) => {
     const loc = await Location.findOne({ where: {id: req.params.id}});
 
     if (loc === null) {
@@ -55,13 +56,13 @@ exports.update = asyncHandler(async (req, res, next) => {
 });
 
 // List all components of a location
-exports.create = asyncHandler(async (req, res, next) => {
+controller.create = asyncHandler(async (req, res, next) => {
     const loc = await Location.create({name: req.body.locname});
 
     res.redirect(loc.url);
 });
 
-exports.delete = asyncHandler(async (req, res, next) => {
+controller.delete = asyncHandler(async (req, res, next) => {
     const location = await Location.findOne({where: {id: req.params.id}});
 
     if (location === null) {
@@ -74,3 +75,5 @@ exports.delete = asyncHandler(async (req, res, next) => {
     await location.destroy();
     res.redirect('/location/');
 });
+
+export default controller;

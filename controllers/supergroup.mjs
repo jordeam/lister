@@ -1,14 +1,13 @@
-const { seqlz } = require('../db');
-const {Sequelize, Op} = require('sequelize');
-const Supergroup = require("../models/supergroup");
-const Group = require("../models/group");
+import { seqlz } from '../db.js';
+import Supergroup from "../models/supergroup.js";
+import Group from "../models/group.mjs";
 
-const { body, validationResult } = require("express-validator");
-const asyncHandler = require("express-async-handler");
-// const { param } = require('../app');
+import asyncHandler from "express-async-handler";
+
+const controller = {};
 
 // Display list of all Supergroup.
-exports.index = asyncHandler(async (req, res, next) => {
+controller.index = asyncHandler(async (req, res, next) => {
     const allSupergroups = await Supergroup.findAll({attributes: ['id', 'name'], order: seqlz.col('name')});
     res.render("supergroup_list", {
         supergroups_list: allSupergroups,
@@ -16,7 +15,7 @@ exports.index = asyncHandler(async (req, res, next) => {
 });
 
 // Display detail page for a specific Supergroup.
-exports.list = asyncHandler(async (req, res, next) => {
+controller.list = asyncHandler(async (req, res, next) => {
   // Get details of supergroup and all associated pets (in parallel)
   const [allGroups, supergroup] = await Promise.all([Group.findAll({where: {supergroup_id: req.params.id}, order: [['name']]}), Supergroup.findOne({where: {id: req.params.id}})]);
   if (allGroups === null || supergroup === null) {
@@ -33,13 +32,13 @@ exports.list = asyncHandler(async (req, res, next) => {
 });
 
 // Create a new supergroup
-exports.create = asyncHandler(async (req, res, next) => {
+controller.create = asyncHandler(async (req, res, next) => {
   const spgrp = await Supergroup.create({name: req.body.name});
 
   return res.redirect(spgrp.url);
 });
 
-exports.delete = asyncHandler(async (req, res, next) => {
+controller.delete = asyncHandler(async (req, res, next) => {
   const spgroup = await Supergroup.findOne({ where: { id: req.params.id } });
 
   if (spgroup === null) {
@@ -52,3 +51,5 @@ exports.delete = asyncHandler(async (req, res, next) => {
   await spgroup.destroy();
   res.redirect('/supergroup');
 });
+
+export default controller;
