@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-const supplierController = require("../controllers/supplier");
+import supplierController from "../controllers/supplier.js";
 
 /// PET ROUTES ///
 
@@ -13,4 +13,4 @@ router.get("/:id", supplierController.home);
 router.post("/:id", supplierController.update);
 router.get("/:id/delete", supplierController.delete);
 
-module.exports = router;
+export default router;

@@ -1,30 +1,40 @@
 //index.js
 
-const createError = require("http-errors");
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-var debug = require('debug')('lister:server');
-var http = require('http');
+import createError from "http-errors";
+import express from "express";
+import path from "path";
+import { fileURLToPath } from 'url';
+import cookieParser from "cookie-parser";
+
+import logger from 'morgan';
+//const { logger } = Morgan;
+
+import Debug from "debug";
+const debug = Debug('lister:server');
+
+import http from 'http';
 
 
-const indexRouter = require("./routes/index");
-const supergroupRouter = require("./routes/supergroup");
-const groupRouter = require("./routes/group");
-const componentRouter = require("./routes/component");
-const locationRouter = require("./routes/location");
-const locationEntryRouter = require("./routes/locationentry");
-const shoplistRouter = require("./routes/shoplist");
-const supplierRouter = require("./routes/supplier");
-const suppliercodeRouter = require("./routes/suppliercode");
-const caseRouter = require("./routes/case");
-const searchRouter = require("./routes/search");
-const scriptRouter = require('./routes/scripts');
-const imageRouter = require('./routes/images');
+import indexRouter from "./routes/index.mjs";
+import supergroupRouter from "./routes/supergroup.mjs";
+import groupRouter from "./routes/group.mjs";
+import componentRouter from "./routes/component.mjs";
+import locationRouter from "./routes/location.mjs";
+import locationEntryRouter from "./routes/locationentry.mjs";
+import shoplistRouter from "./routes/shoplist.mjs";
+import supplierRouter from "./routes/supplier.mjs";
+import suppliercodeRouter from "./routes/suppliercode.mjs";
+import caseRouter from "./routes/case.mjs";
+import searchRouter from "./routes/search.mjs";
+import scriptRouter from './routes/scripts.mjs';
+import imageRouter from './routes/images.mjs';
 
-const compression = require("compression");
-// const helmet = require("helmet");
+import compression from "compression";
+// import helmet from "helmet");
+
+const __filename = fileURLToPath(import.meta.url);
+
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -39,7 +49,7 @@ app.set('trust proxy', 1);
 app.get('/ip', (request, response) => response.send(request.ip));
 
 // Set up rate limiter: maximum of twenty requests per minute
-const RateLimit = require("express-rate-limit");
+import RateLimit from "express-rate-limit";
 const limiter = RateLimit({
   windowMs: 1 * 10 * 1000, // 10 seconds
   max: 30,
@@ -48,6 +58,7 @@ const limiter = RateLimit({
 app.use(limiter);
 
 // view engine setup
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 

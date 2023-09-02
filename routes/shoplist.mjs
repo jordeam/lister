@@ -1,12 +1,12 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-const shoplistController = require("../controllers/shoplist");
+import shoplistController from "../controllers/shoplist.js";
 
 /// Shop List ///
 
 // GET group list
 router.get("/", shoplistController.home);
 
-module.exports = router;
+export default router;

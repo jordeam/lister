@@ -1,8 +1,9 @@
-const express = require("express");
+import express from 'express';
 const router = express.Router();
-const asyncHandler = require("express-async-handler");
 
-index = asyncHandler(async (req, res, next) => {
+import asyncHandler from "express-async-handler";
+
+const index = asyncHandler(async (req, res, next) => {
   res.render("index", {});
 });
 
@@ -13,4 +14,5 @@ router.get('/favicon.ico', function (req, res) {
   res.download('./public/images/favicon.ico');
 });
 
-module.exports = router;
+// module.exports = router;
+export default router;

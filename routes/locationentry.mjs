@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // Require Controllers.
-const locationEntryController = require("../controllers/locationentry");
+import locationEntryController from "../controllers/locationentry.js";
 
 // GET location entries
 router.get("/:id", locationEntryController.home);
@@ -11,4 +11,4 @@ router.get("/:id/delete", locationEntryController.delete);
 router.get("/create/:location_id", locationEntryController.choose);
 router.post("/insert/:id", locationEntryController.insert);
 
-module.exports = router;
+export default router;

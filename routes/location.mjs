@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-const locationController = require("../controllers/location");
+import locationController from "../controllers/location.js";
 
 /// PET ROUTES ///
 
@@ -13,4 +13,4 @@ router.get("/:id", locationController.home);
 router.post("/:id", locationController.update);
 router.get('/:id/delete', locationController.delete);
 
-module.exports = router;
+export default router;

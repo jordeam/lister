@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-const groupController = require("../controllers/group");
+import groupController from "../controllers/group.js";
 
 /// PET ROUTES ///
 
@@ -18,4 +18,4 @@ router.get("/:id", groupController.home);
 // GET group list
 router.get("/:id/delete", groupController.delete);
 
-module.exports = router;
+export default router;

@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-const componentController = require("../controllers/component");
+import componentController from "../controllers/component.js";
 
 /// PET ROUTES ///
 
@@ -20,4 +20,4 @@ router.post("/:id", componentController.update);
 
 router.get("/:id/delete", componentController.delete);
 
-module.exports = router;
+export default router;

@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-const supergroupController = require("../controllers/supergroup");
+import supergroupController from "../controllers/supergroup.js";
 
 /// PET ROUTES ///
 
@@ -17,4 +17,4 @@ router.get("/:id", supergroupController.list);
 
 router.get("/:id/delete", supergroupController.delete);
 
-module.exports = router;
+export default router;

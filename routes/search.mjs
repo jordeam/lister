@@ -1,8 +1,8 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
 
 // Require our controllers.
-const searchController = require("../controllers/search");
+import searchController from "../controllers/search.js";
 
 /// PET ROUTES ///
 
@@ -10,4 +10,4 @@ const searchController = require("../controllers/search");
 router.get("/", searchController.get);
 router.post('/', searchController.post);
 
-module.exports = router;
+export default router;

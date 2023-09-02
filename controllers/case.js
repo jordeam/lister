@@ -2,7 +2,6 @@ const { seqlz } = require('../db');
 const Case = require("../models/case");
 
 const asyncHandler = require("express-async-handler");
-// const { param } = require('../app');
 
 // Display list of all Case.
 exports.list = asyncHandler(async (req, res, next) => {
