@@ -1,6 +1,6 @@
-import { seqlz } from '../db.js';
+import { seqlz } from '../db.mjs';
 import { QueryTypes} from 'sequelize';
-import Location from "../models/location.js";
+import Location from "../models/location.mjs";
 import asyncHandler from "express-async-handler";
 
 const controller = {};

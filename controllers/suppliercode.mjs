@@ -1,8 +1,7 @@
-import { seqlz } from '../db.js';
-import {Sequelize, Op} from 'sequelize';
-import Suppliercode from "../models/suppliercode.js";
-import Supplier from "../models/supplier.js";
-import Manufacturer from "../models/manufacturer.js";
+import { seqlz } from '../db.mjs';
+import Suppliercode from "../models/suppliercode.mjs";
+import Supplier from "../models/supplier.mjs";
+import Manufacturer from "../models/manufacturer.mjs";
 import Component from '../models/component.mjs';
 import Group from '../models/group.mjs';
 

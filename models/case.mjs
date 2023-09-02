@@ -1,4 +1,4 @@
-import { seqlz } from "../db.js";
+import { seqlz } from "../db.mjs";
 import { DataTypes } from "sequelize";
 
 const Case = seqlz.define("case", {

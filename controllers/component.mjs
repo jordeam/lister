@@ -1,10 +1,10 @@
-import { seqlz } from '../db.js';
+import { seqlz } from '../db.mjs';
 import {QueryTypes, Op} from 'sequelize';
-import Location from "../models/location.js";
+import Location from "../models/location.mjs";
 import Case from '../models/case.mjs';
 import Group from '../models/group.mjs';
 import Component from "../models/component.mjs";
-import LocationEntry from '../models/locationentry.js';
+import LocationEntry from '../models/locationentry.mjs';
 
 import asyncHandler from "express-async-handler";
 

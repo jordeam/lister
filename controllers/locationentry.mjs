@@ -1,9 +1,9 @@
-import Location from "../models/location.js";
-import LocationEntry from "../models/locationentry.js";
+import Location from "../models/location.mjs";
+import LocationEntry from "../models/locationentry.mjs";
 import Component from "../models/component.mjs";
 import asyncHandler from "express-async-handler";
 import Group from '../models/group.mjs';
-import SuperGroup from '../models/supergroup.js';
+import SuperGroup from '../models/supergroup.mjs';
 
 const controller = {};
 

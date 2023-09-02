@@ -1,5 +1,5 @@
-import { seqlz } from '../db.js';
-import Supergroup from "../models/supergroup.js";
+import { seqlz } from '../db.mjs';
+import Supergroup from "../models/supergroup.mjs";
 import Group from "../models/group.mjs";
 
 import asyncHandler from "express-async-handler";

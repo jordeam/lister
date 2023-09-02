@@ -1,5 +1,5 @@
-const { seqlz, testDbConnection } = require("../db");
-const { Sequelize } = require("sequelize");
+import { seqlz } from "../db.mjs";
+import { Sequelize } from "sequelize";
 
 const UserNav = seqlz.define("usernav", {
     id: { type: Sequelize.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true, unique: true },
@@ -11,4 +11,4 @@ const UserNav = seqlz.define("usernav", {
                                raw: true
                            });
 
-module.exports = UserNav;
+export default UserNav;

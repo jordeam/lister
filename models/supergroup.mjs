@@ -1,5 +1,5 @@
-const { seqlz } = require("../db");
-const { DataTypes } = require("sequelize");
+import { seqlz } from "../db.mjs";
+import { DataTypes } from "sequelize";
 
 const SuperGroup = seqlz.define("supergroup", {
     id: {type: DataTypes.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true, unique: true},
@@ -16,4 +16,4 @@ const SuperGroup = seqlz.define("supergroup", {
                                raw: true
                              });
 
-module.exports = SuperGroup;
+export default SuperGroup;

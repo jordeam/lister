@@ -1,4 +1,4 @@
-import { seqlz } from '../db.js';
+import { seqlz } from '../db.mjs';
 import { QueryTypes} from 'sequelize';
 
 import asyncHandler from "express-async-handler";

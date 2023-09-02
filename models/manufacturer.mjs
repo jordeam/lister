@@ -1,5 +1,5 @@
-const { seqlz } = require("../db");
-const { DataTypes } = require("sequelize");
+import { seqlz } from "../db.mjs";
+import { DataTypes } from "sequelize";
 
 const Manufacturers = seqlz.define("manufacturers", {
   id: {type: DataTypes.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true, unique: true},
@@ -18,4 +18,4 @@ const Manufacturers = seqlz.define("manufacturers", {
                                   raw: true
                                 });
 
-module.exports = Manufacturers;
+export default Manufacturers;

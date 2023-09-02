@@ -1,4 +1,4 @@
-import { seqlz } from '../db.js';
+import { seqlz } from '../db.mjs';
 import Case from "../models/case.mjs";
 
 import asyncHandler from "express-async-handler";

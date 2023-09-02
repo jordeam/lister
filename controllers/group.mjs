@@ -1,5 +1,5 @@
 import Group from "../models/group.mjs";
-import SuperGroup from "../models/supergroup.js";
+import SuperGroup from "../models/supergroup.mjs";
 import Component from "../models/component.mjs";
 import asyncHandler from "express-async-handler";
 

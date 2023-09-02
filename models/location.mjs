@@ -1,5 +1,5 @@
-const { seqlz } = require("../db");
-const { DataTypes } = require("sequelize");
+import { seqlz } from "../db.mjs";
+import { DataTypes } from "sequelize";
 
 const Location = seqlz.define("location", {
     id: { type: DataTypes.INTEGER, autoIncrement: true, allowNull: false, primaryKey: true, unique: true },
@@ -19,4 +19,4 @@ const Location = seqlz.define("location", {
                                raw: true
                            });
 
-module.exports = Location;
+export default Location;

@@ -1,5 +1,5 @@
-import { seqlz } from '../db.js';
-import Supplier from "../models/supplier.js";
+import { seqlz } from '../db.mjs';
+import Supplier from "../models/supplier.mjs";
 
 import asyncHandler from "express-async-handler";
 // const { param } = require('../app');
