@@ -10,7 +10,8 @@ const controller = {};
 controller.index = asyncHandler(async (req, res, next) => {
     const allSupergroups = await Supergroup.findAll({attributes: ['id', 'name'], order: seqlz.col('name')});
     res.render("supergroup_list", {
-        supergroups_list: allSupergroups,
+      user: req.user,
+      supergroups_list: allSupergroups,
     });
 });
 
@@ -26,6 +27,7 @@ controller.list = asyncHandler(async (req, res, next) => {
   }
 
   res.render("supergroup_home", {
+    user: req.user,
     supergroup,
     allGroups,
   });

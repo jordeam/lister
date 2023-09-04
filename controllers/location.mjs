@@ -9,6 +9,7 @@ const controller = {};
 controller.list = asyncHandler(async (req, res, next) => {
   const allLocations = await Location.findAll({order: seqlz.col('name')});
   res.render("location_list", {
+    user: req.user,
     allLocations,
   });
 });
@@ -30,6 +31,7 @@ controller.home = asyncHandler(async (req, res, next) => {
   }
 
   res.render("location_home", {
+    user: req.user,
     location: loc,
     entries,
   });

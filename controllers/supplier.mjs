@@ -8,16 +8,17 @@ const controller = {};
 
 // Display list of all Supplier.
 controller.list = asyncHandler(async (req, res, next) => {
-    const allSuppliers = await Supplier.findAll({attributes: ['id', 'name'], order: seqlz.col('name')});
-    res.render("supplier_list", {
-        suppliers_list: allSuppliers,
-    });
+  const allSuppliers = await Supplier.findAll({ attributes: ['id', 'name'], order: seqlz.col('name') });
+  res.render("supplier_list", {
+    user: req.user,
+    suppliers_list: allSuppliers,
+  });
 });
 
 // Display detail page for a specific Supplier.
 controller.home = asyncHandler(async (req, res, next) => {
   // Get details of supplier and all associated pets (in parallel)
-  const supplier = await Supplier.findOne({where: {id: req.params.id}});
+  const supplier = await Supplier.findOne({ where: { id: req.params.id } });
   if (supplier === null) {
     // No results.
     const err = new Error("Fornecedor não encontrado.");
@@ -26,6 +27,7 @@ controller.home = asyncHandler(async (req, res, next) => {
   }
 
   res.render("supplier_home", {
+    user: req.user,
     supplier,
   });
 });

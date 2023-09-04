@@ -3,6 +3,7 @@ const router = express.Router();
 
 // Require our controllers.
 import groupController from "../controllers/group.mjs";
+import { ensureAuthenticated } from "../controllers/users.mjs";
 
 /// PET ROUTES ///
 
@@ -10,12 +11,12 @@ import groupController from "../controllers/group.mjs";
 router.get("/select/:id", groupController.select);
 
 // :id is the supergroup id
-router.post("/create/:id", groupController.create);
+router.post("/create/:id", ensureAuthenticated, groupController.create);
 
 // GET group list
 router.get("/:id", groupController.home);
 
 // GET group list
-router.get("/:id/delete", groupController.delete);
+router.get("/:id/delete", ensureAuthenticated, groupController.delete);
 
 export default router;

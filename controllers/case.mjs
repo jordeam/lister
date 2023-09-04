@@ -9,7 +9,8 @@ const controller = {};
 controller.list = asyncHandler(async (req, res, next) => {
     const allCases = await Case.findAll({order: seqlz.col('name')});
     res.render("case_list", {
-        cases_list: allCases,
+      user: req.user,
+      cases_list: allCases,
     });
 });
 
@@ -25,6 +26,7 @@ controller.home = asyncHandler(async (req, res, next) => {
   }
 
   res.render("case_home", {
+    user: req.user,
     ccase,
   });
 });

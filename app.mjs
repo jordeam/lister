@@ -14,6 +14,12 @@ const debug = Debug('lister:server');
 
 import http from 'http';
 
+import session from 'express-session';
+import sessionFileStore from 'session-file-store';
+const FileStore = sessionFileStore(session);
+
+import sessionMemoryStore from 'memorystore';
+const MemoryStore = sessionMemoryStore(session);
 
 import indexRouter from "./routes/index.mjs";
 import supergroupRouter from "./routes/supergroup.mjs";
@@ -28,12 +34,13 @@ import caseRouter from "./routes/case.mjs";
 import searchRouter from "./routes/search.mjs";
 import scriptRouter from './routes/scripts.mjs';
 import imageRouter from './routes/images.mjs';
+import {initPassport, sessionCookieName} from './controllers/users.mjs';
+import { router as usersRouter } from './routes/users.mjs';
 
 import compression from "compression";
 // import helmet from "helmet");
 
 const __filename = fileURLToPath(import.meta.url);
-
 const __dirname = path.dirname(__filename);
 
 const app = express();
@@ -56,6 +63,25 @@ const limiter = RateLimit({
 });
 // Apply rate limiter to all requests
 app.use(limiter);
+
+// Sessions
+
+app.use(session({
+  store: new FileStore({ path: "sessions" }),
+  secret: 'keyboard mouse',
+  resave: true,
+  saveUninitialized: true,
+  name: sessionCookieName
+}));
+initPassport(app);
+
+app.use(session({
+ store: new MemoryStore({}),
+ secret: 'keyboard mouse',
+ resave: true,
+ saveUninitialized: true,
+ name: sessionCookieName
+}));
 
 // view engine setup
 
@@ -93,6 +119,7 @@ app.use("/component", componentRouter);
 app.use("/search", searchRouter);
 app.use("/script", scriptRouter);
 app.use("/image", imageRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

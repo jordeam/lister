@@ -4,6 +4,7 @@ const router = express.Router();
 
 // Require our controllers.
 import suppliercodeController from "../controllers/suppliercode.mjs";
+import { ensureAuthenticated } from "../controllers/users.mjs";
 
 /// PET ROUTES ///
 
@@ -11,10 +12,10 @@ import suppliercodeController from "../controllers/suppliercode.mjs";
 // router.get("/", suppliercodeController.list);
 
 // id is component id
-router.post("/create/:id", suppliercodeController.create);
+router.post("/create/:id", ensureAuthenticated, suppliercodeController.create);
 
 router.get("/:id", suppliercodeController.home);
-router.post("/:id", suppliercodeController.update);
-router.get("/:id/delete", suppliercodeController.delete);
+router.post("/:id", ensureAuthenticated, suppliercodeController.update);
+router.get("/:id/delete", ensureAuthenticated, suppliercodeController.delete);
 
 export default router;

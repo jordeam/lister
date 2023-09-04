@@ -7,33 +7,35 @@ const controller = {};
 
 // List components of a specific group
 controller.home = asyncHandler(async (req, res, next) => {
-    // Get details of supergroup and all associated pets (in parallel)
-    const [allComponents, group] = await Promise.all([Component.findAll({where: {group_id: req.params.id}, order:[['name']]}), Group.findOne({where: { id: req.params.id}})]);
+  // Get details of supergroup and all associated pets (in parallel)
+  const [allComponents, group] = await Promise.all([Component.findAll({ where: { group_id: req.params.id }, order: [['name']] }), Group.findOne({ where: { id: req.params.id } })]);
 
-    if (group === null) {
-        // No results.
-        const err = new Error("Grupo não encontrado.");
-        err.status = 404;
-        return next(err);
-    }
+  if (group === null) {
+    // No results.
+    const err = new Error("Grupo não encontrado.");
+    err.status = 404;
+    return next(err);
+  }
 
-    const superGroup = await SuperGroup.findOne({where: {id: group.supergroup_id}});
+  const superGroup = await SuperGroup.findOne({ where: { id: group.supergroup_id } });
 
-    res.render("group_home", {
-        group,
-        supergroup: superGroup,
-        allComponents,
-    });
+  res.render("group_home", {
+    user: req.user,
+    group,
+    supergroup: superGroup,
+    allComponents,
+  });
 });
 
 // Paramameters:
 // id: is the id of supergroup
 controller.select = asyncHandler(async (req, res, next) => {
-    const allGroups = await Group.findAll({where: {supergroup_id: req.params.id}, order: [['name']]});
+  const allGroups = await Group.findAll({ where: { supergroup_id: req.params.id }, order: [['name']] });
 
-    res.render('group_select', {
-        groups: allGroups
-    });
+  res.render('group_select', {
+    user: req.user,
+    groups: allGroups
+  });
 });
 
 // Create a new group with supergroup :id parameter

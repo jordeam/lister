@@ -7,7 +7,9 @@ const controller = {};
 
 // List all components of a location
 controller.get = asyncHandler(async (req, res, next) => {
-  res.render("search_home");
+  res.render("search_home", {
+    user: req.user,
+  });
 });
 
 controller.post = asyncHandler(async (req, res, next) => {
@@ -33,6 +35,7 @@ controller.post = asyncHandler(async (req, res, next) => {
                                       type: QueryTypes.SELECT,
                                     });
   res.render("search_home", {
+    user: req.user,
     expr: req.body.expr,
     components,
     clocs,

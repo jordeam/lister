@@ -43,6 +43,7 @@ controller.home = asyncHandler(async (req, res, next) => {
   const allLocations = await Location.findAll({ order: [['name']] });
 
   res.render("component_home", {
+    user: req.user,
     component: comp,
     group,
     ccase,
@@ -69,7 +70,8 @@ controller.select = asyncHandler(async (req, res, next) => {
     const allComponents = await Component.findAll({where: {group_id: req.params.id}, order: [['name']]});
 
     res.render('component_select', {
-        components: allComponents
+      user: req.user,
+      components: allComponents
     });
 });
 

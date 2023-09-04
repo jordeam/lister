@@ -1,10 +1,6 @@
 import { default as request } from 'superagent';
-import util from 'util';
 import url from 'url';
 const URL = url.URL;
-import DBG from 'debug';
-const debug = DBG('notes:users-superagent');
-const error = DBG('notes:error-superagent');
 
 var authid = 'them';
 var authcode = 'D4ED43C0-8BD6-4FE2-B358-7C0E230D11EF';
@@ -52,7 +48,7 @@ export async function find(username) {
     return res.body;
 }
 
-export async function userPasswordCheck(username, password) { 
+export async function userPasswordCheck(username, password) {
     var res = await request
         .post(reqURL(`/password-check`))
         .send({ username, password })
@@ -62,16 +58,16 @@ export async function userPasswordCheck(username, password) {
     return res.body;
 }
 
-export async function findOrCreate(profile) {  
+export async function findOrCreate(profile) {
     var res = await request
         .post(reqURL('/find-or-create'))
-        .send({ 
-            username: profile.id, password: profile.password, 
-            provider: profile.provider, 
-            familyName: profile.familyName, 
-            givenName: profile.givenName, 
-            middleName: profile.middleName, 
-            emails: profile.emails, photos: profile.photos 
+        .send({
+            username: profile.id, password: profile.password,
+            provider: profile.provider,
+            familyName: profile.familyName,
+            givenName: profile.givenName,
+            middleName: profile.middleName,
+            emails: profile.emails, photos: profile.photos
         })
         .set('Content-Type', 'application/json')
         .set('Acccept', 'application/json')
@@ -79,11 +75,11 @@ export async function findOrCreate(profile) {
     return res.body;
 }
 
-export async function listUsers() { 
+export async function listUsers() {
     var res = await request
         .get(reqURL('/list'))
         .set('Content-Type', 'application/json')
         .set('Acccept', 'application/json')
-        .auth(authid, authcode); 
+        .auth(authid, authcode);
     return res.body;
 }

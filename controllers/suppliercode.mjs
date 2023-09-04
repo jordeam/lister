@@ -30,6 +30,7 @@ controller.home = asyncHandler(async (req, res, next) => {
   ]);
 
   res.render("suppliercode_home", {
+    user: req.user,
     suppliercode,
     component,
     group,
