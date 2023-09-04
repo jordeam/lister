@@ -20,7 +20,7 @@ controller.post = asyncHandler(async (req, res, next) => {
                                     });
 
   const clocs = [];
-  for (i in components) {
+  for (let i in components) {
     const cloc = await seqlz.query("SELECT l.id,l.name,le.box,le.quant,le.id FROM locations as l, location_entry as le WHERE l.id = le.location_id AND le.component_id = $1 ORDER BY l.name",
                                 {
                                   bind: [req.body.expr],
