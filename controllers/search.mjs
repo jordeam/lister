@@ -20,16 +20,14 @@ controller.post = asyncHandler(async (req, res, next) => {
                                     });
 
   const clocs = [];
-  for (i in components) {
-    const cloc = await seqlz.query("SELECT l.id,l.name,le.box,le.quant,le.id FROM locations as l, location_entry as le WHERE l.id = le.location_id AND le.component_id = $1 ORDER BY l.name",
-                                {
+  const cloc = await seqlz.query("SELECT l.id,l.name,le.box,le.quant,le.id FROM locations AS l, location_entry AS le, components AS co WHERE l.id = le.location_id AND le.component_id = co.id AND co.name ~ $1 ORDER BY l.name",
+                                 {
                                   bind: [req.body.expr],
                                   type: QueryTypes.SELECT,
                                 });
     clocs.push(cloc);
-  }
 
-  const partnumbers = await seqlz.query("select c.id, c.name, g.name as g_name, sc.manufact_pn, sc.code, s.name as s_name, m.name as m_name from suppliercodes as sc, components as c, groups as g, suppliers as s, manufacturers as m where manufact_id = m.id and supplier_id = s.id and component_id = c.id and group_id = g.id and (manufact_pn ~ $1 or code ~ $1)",
+  const partnumbers = await seqlz.query("SELECT c.id, c.name, g.name AS g_name, sc.manufact_pn, sc.code, s.name AS s_name, m.name AS m_name from suppliercodes AS sc, components AS c, groups AS g, suppliers AS s, manufacturers AS m WHERE manufact_id = m.id AND supplier_id = s.id AND component_id = c.id AND group_id = g.id AND (manufact_pn ~ $1 OR code ~ $1)",
                                     {
                                       bind: [req.body.expr],
                                       type: QueryTypes.SELECT,

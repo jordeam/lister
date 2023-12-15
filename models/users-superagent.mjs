@@ -1,9 +1,21 @@
 import { default as request } from 'superagent';
 import url from 'url';
+import path from 'path';
+
 const URL = url.URL;
 
-var authid = 'them';
-var authcode = 'D4ED43C0-8BD6-4FE2-B358-7C0E230D11EF';
+import fs from 'fs';
+import { default as jsyaml } from 'js-yaml';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const yamltext = fs.readFileSync(__dirname + '/../auth-keys.yaml', 'utf8');
+const params = jsyaml.load(yamltext, 'utf8');
+
+var authid = params.user;
+var authcode = params.key;
 
 function reqURL(path) {
     const requrl = new URL(process.env.USER_SERVICE_URL);

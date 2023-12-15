@@ -5,9 +5,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from 'url';
 import cookieParser from "cookie-parser";
-
 import logger from 'morgan';
-//const { logger } = Morgan;
 
 import Debug from "debug";
 const debug = Debug('lister:server');
