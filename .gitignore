@@ -130,3 +130,4 @@ dist
 .pnp.*
 /package-lock.json
 /sequelize-conf.yaml
+/sessions/

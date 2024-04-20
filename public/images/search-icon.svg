@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg12215"
+   sodipodi:docname="search-icon.svg"
+   height="144.94283mm"
+   width="144.94283mm"
+   version="1.1"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   viewBox="0 0 513.57694 513.57694"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs12217">
+    <filter
+       id="filter12971"
+       inkscape:collect="always"
+       x="-0.083999876"
+       y="-0.083999876"
+       width="1.1679998"
+       height="1.1679998">
+      <feGaussianBlur
+         id="feGaussianBlur12973"
+         stdDeviation="3.2250001"
+         inkscape:collect="always" />
+    </filter>
+    <linearGradient
+       id="linearGradient12981"
+       y2="700.21002"
+       gradientUnits="userSpaceOnUse"
+       x2="-144.28999"
+       gradientTransform="matrix(4.772,0,0,4.772,896.76,-2714.8)"
+       y1="601.65002"
+       x1="-113.21"
+       inkscape:collect="always">
+      <stop
+         id="stop12977"
+         style="stop-color:#ffffff"
+         offset="0" />
+      <stop
+         id="stop12979"
+         style="stop-color:#d2d5d8"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="32"
+     pagecolor="#ffffff"
+     inkscape:window-height="1011"
+     inkscape:window-maximized="1"
+     inkscape:zoom="0.49497475"
+     inkscape:window-x="0"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="layer1"
+     inkscape:cx="398.0001"
+     inkscape:cy="614.17274"
+     inkscape:window-width="1920"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     inkscape:showpageshadow="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <g
+     id="layer1"
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     transform="translate(-113.34079,-63.076567)">
+    <rect
+       id="rect12945"
+       style="color:#000000;fill:#000000;filter:url(#filter12971)"
+       transform="matrix(4.772,0,0,4.772,896.76,-2714.8)"
+       ry="12.857"
+       height="92.142998"
+       width="92.142998"
+       y="589.85999"
+       x="-156.42999" />
+    <rect
+       id="rect12943"
+       style="color:#000000;fill:url(#linearGradient12981);stroke:#cccccc;stroke-width:10.098"
+       ry="61.354"
+       height="439.70001"
+       width="439.70001"
+       y="83.021004"
+       x="136.64999" />
+    <path
+       id="path12423"
+       inkscape:transform-center-x="-36.089735"
+       style="color:#000000;text-indent:0;text-transform:none;fill:#454040"
+       inkscape:transform-center-y="35.624163"
+       d="m 254.94,194.09 c -43.273,43.273 -43.378,114.16 -0.1054,157.43 36.663,36.663 93.201,42.25 135.92,16.766 l 76.344,74.235 c 10.507,10.198 27.085,9.8217 37.117,-0.84359 10.033,-10.665 9.7691,-27.447 -0.73813,-37.645 l -75.184,-72.864 c 26.361,-42.847 21.008,-100.04 -16.028,-137.08 -43.273,-43.273 -114.05,-43.273 -157.33,0 z m 31.74,31.74 c 26.102,-26.102 67.746,-26.102 93.848,0 26.102,26.102 26.102,67.746 0,93.848 -26.102,26.102 -67.746,26.102 -93.848,0 -26.102,-26.102 -26.102,-67.746 0,-93.848 z" />
+  </g>
+  <metadata
+     id="metadata20">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>search icon</dc:title>
+        <dc:date>2010-05-04T23:07:42</dc:date>
+        <dc:description>icon search</dc:description>
+        <dc:source>https://openclipart.org/detail/58717/search-icon-by-voyeg3r</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>voyeg3r</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>computer</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>informatic</rdf:li>
+            <rdf:li>search</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

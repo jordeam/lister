@@ -4,7 +4,6 @@ Description=Lister Components Manager
 [Service]
 User=jrm
 Group=jrm
-Environment="PASSWD=secret"
 WorkingDirectory=/home/jrm/Code/js/seq-lister
 ExecStart=/usr/bin/npm run dev
 Restart=on-failure

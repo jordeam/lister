@@ -7,38 +7,34 @@ html(lang='en')
     link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css", integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N", crossorigin="anonymous")
     script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js", integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj", crossorigin="anonymous")
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js", integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+", crossorigin="anonymous")
+    link(rel="stylesheet", href="/stylesheets/bootstrap.min.css")
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    div(class='container-fluid')
-      div(class='row')
-        div(class='col-sm-2')
-          block sidebar
-            dl(class='sidebar-nav')
-              dd
-                a(href='/') Home
-                hr
-              dd
-                a(href='/supergroup') Supergrupos
-                hr
-              dd
-                a(href='/location') Localizações
-                hr
-              dd
-                a(href='/supplier') Lista de fornecedores
-                hr
-              dd
-                a(href='/shoplist') Lista de compras
-                hr
-              dd
-                a(href='/search') Busca
-                hr
-              if user !== undefined
-                dd
-                  a.btn.btn-primary(href="/users/logout") Log out
-              else
-                dd
-                  p Usuário não logado
-                  a.btn.btn-primary(href="/users/login") Log in
-
-        div(class='col-sm-10')
-          block content
+    div.navbar
+      a.btn.btn-primary(href='/')
+        img(src='/image/home-icon.svg' alt="Home" width="20pt" height="24pt")
+      | &nbsp;
+      a.btn.btn-primary(href='/supergroup') SG
+      | &nbsp;
+      a.btn.btn-primary(href='/location') Locs
+      | &nbsp;
+      a(href='/supplier') LF
+      | &nbsp;
+      a(href='/shoplist') LC
+      | &nbsp;
+      a.btn.btn-primary(href='/search')
+        img(src='/image/search-icon.svg' alt="Logout" width="20pt" height="24pt")
+      | &nbsp;
+      if user !== undefined
+        a.btn.btn-primary(href="/users/logout")
+          img(src='/image/logout-icon.svg' alt="Logout" width="20pt" height="24pt")
+      else
+        a.btn.btn-primary(href="/users/login")
+          img(src='/image/login-icon.svg' alt="Login" width="20pt" height="24pt")
+    div.logmsg
+      if user !== undefined
+        p Logado como #{user.id} &nbsp;
+      else
+        p Usuário não logado &nbsp;
+    div.main
+      block content
