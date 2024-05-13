@@ -33,7 +33,7 @@ controller.home = asyncHandler(async (req, res, next) => {
       type: QueryTypes.SELECT
     });
 
-  const locations = await seqlz.query("select lo.name, le.box from location_entry as le, locations as lo where location_id = lo.id and component_id = $1",
+  const locations = await seqlz.query("select lo.id, lo.name, le.box from location_entry as le, locations as lo where location_id = lo.id and component_id = $1",
     {
       bind: [comp.id],
       type: QueryTypes.SELECT,
