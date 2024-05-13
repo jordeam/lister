@@ -33,11 +33,6 @@ controller.home = asyncHandler(async (req, res, next) => {
       type: QueryTypes.SELECT
     });
 
-  let locList = [];
-  for (let le of locEntries) {
-    locList.push(le.location_id);
-  }
-
   const locations = await seqlz.query("select lo.name, le.box from location_entry as le, locations as lo where location_id = lo.id and component_id = $1",
     {
       bind: [comp.id],
