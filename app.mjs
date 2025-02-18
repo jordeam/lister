@@ -56,7 +56,7 @@ app.get('/ip', (request, response) => response.send(request.ip));
 // Set up rate limiter: maximum of twenty requests per minute
 import RateLimit from "express-rate-limit";
 const limiter = RateLimit({
-  windowMs: 1 * 10 * 1000, // 10 seconds
+  windowMs: 0.1 * 10 * 1000, // 1 seconds
   max: 30,
 });
 // Apply rate limiter to all requests

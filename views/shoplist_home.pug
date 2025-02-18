@@ -3,11 +3,17 @@ extends base
 block content
   h1 Lista de Compras dos Componentes
 
+  p
+    a.btn.btn-primary(href="/shoplist/csv") CSV
+
   each sl in shoplist
     p
       a.btn.btn-primary(href='/component/'+sl.id)
         img(src="/image/component-icon.svg" alt="Editar" width="16pt" height="20pt")
-      | &nbsp; #{sl.gname}, #{sl.cname}, #{sl.in_stock}
+      if sl.case_name == "not set" || sl.case_name == "Unknown"
+        | &nbsp; #{sl.gname}, #{sl.cname}: #[Strong #{sl.in_stock}]
+      else
+        | &nbsp; #{sl.gname}, #{sl.cname} (#{sl.case_name}): #[Strong #{sl.in_stock}]
 
   else
     li Não existem localizações selecionadas.

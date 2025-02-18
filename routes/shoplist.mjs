@@ -9,4 +9,6 @@ import shoplistController from "../controllers/shoplist.mjs";
 // GET group list
 router.get("/", shoplistController.home);
 
+router.get("/csv", shoplistController.csv);
+
 export default router;

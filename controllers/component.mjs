@@ -41,6 +41,7 @@ controller.home = asyncHandler(async (req, res, next) => {
 
   const locations = await Location.findAll({ where: { id: { [Op.in]: locList } } });
   const allLocations = await Location.findAll({ order: [['name']] });
+  const allCases = await Case.findAll({ order: [['name']] });
 
   res.render("component_home", {
     user: req.user,
@@ -49,6 +50,7 @@ controller.home = asyncHandler(async (req, res, next) => {
     ccase,
     locEntries,
     locations,
+    allCases,
     allLocations,
     suppliercodes,
   });
@@ -91,6 +93,14 @@ controller.delete = asyncHandler(async (req, res, next) => {
     await LocationEntry.destroy({where: {component_id: comp.id}});
     await comp.destroy();
     res.redirect('/group/'+group_id.toString());
+});
+
+// Paramameters:
+// id: is the id of component, receives case id in body
+controller.set_case = asyncHandler(async (req, res, next) => {
+    await Component.update({case_id: req.body.case_id}, {where: {id: req.params.id}});
+
+    res.redirect('/component/'+req.params.id);
 });
 
 export default controller;

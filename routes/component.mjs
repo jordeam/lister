@@ -7,8 +7,6 @@ import { ensureAuthenticated } from "../controllers/users.mjs";
 
 /// PET ROUTES ///
 
-// GET supercomponent list
-router.get("/:id", componentController.home);
 
 // id is group id
 router.post("/create/:id", ensureAuthenticated, componentController.create);
@@ -16,9 +14,16 @@ router.post("/create/:id", ensureAuthenticated, componentController.create);
 // :id is the id of group
 router.get("/select/:id", componentController.select);
 
+// delete component
+router.get("/:id/delete", ensureAuthenticated, componentController.delete);
+
+// set case component
+router.post("/:id/set_case", ensureAuthenticated, componentController.set_case);
+
+// GET supercomponent list
+router.get("/:id", componentController.home);
+
 // update on POST
 router.post("/:id", ensureAuthenticated, componentController.update);
-
-router.get("/:id/delete", ensureAuthenticated, componentController.delete);
 
 export default router;

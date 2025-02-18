@@ -22,9 +22,20 @@ block content
     a.btn.btn-primary(href='/group/' + component.group_id) G
     | &nbsp; #[Strong Grupo:] #{group.name}
 
+
+  hr
+  h2 Case
   p
     a.btn.btn-primary(href='/case/' + component.case_id) CS
     | &nbsp; #[Strong Case:] #{ccase.name}
+  form(name="change_case" method="post" action="/component/"+component.id+"/set_case")
+    div.form-group
+      select.form-control(name="case_id")
+        each elt in allCases
+          option(value=elt.id selected=(elt.id === ccase.id) ? "selected" : false) #{elt.name}
+            if elt.descr.length > 0
+              | &nbsp; &mdash; #[i #{elt.descr}]
+    button.btn.btn-primary Alterar
 
   hr
 

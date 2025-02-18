@@ -1,0 +1,18 @@
+extends base
+
+block content
+  h1
+    a.btn.btn-primary(href="/case")
+      img(src="/image/back-icon.svg" alt="Voltar" width="16pt" height="20pt")
+    | &nbsp; #[Strong Novo Invólucro] 
+
+  form(name="alter" method="post" action="/case/create")
+    div.form-group
+      label(for='name') Nome/código:
+      input#name.form-control(type="text", placeholder="Nome/código" name="name" required="true" value="")
+
+      label(for='descr') Descrição:
+      input#descr.form-control(type="text", placeholder="Observações e notas" name="descr" value="")
+
+      button.btn.btn-primary
+        img(src="/image/ok-icon.svg" alt="Alterar" width="16pt" height="20pt")

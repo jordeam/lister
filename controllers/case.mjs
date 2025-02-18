@@ -42,4 +42,21 @@ controller.update = asyncHandler(async (req, res, next) => {
   res.redirect('/case/');
 });
 
+// Show the page to insert a new case in DB
+controller.create = asyncHandler(async (req, res, next) => {
+  // Get details of case and all associated pets (in parallel)
+  res.render("case_create", {
+    user: req.user,
+  });
+});
+
+// Insert a new case in DB
+controller.create_post = asyncHandler(async (req, res, next) => {
+  // Get details of case and all associated pets (in parallel)
+  await Case.create({name: req.body.name, descr: req.body.descr});
+
+  res.redirect("/case/");
+});
+
+
 export default controller;

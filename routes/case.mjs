@@ -10,8 +10,11 @@ import { ensureAuthenticated } from "../controllers/users.mjs";
 // GET cases list
 router.get("/", caseController.list);
 // router.post('/create', caseController.create);
+router.get('/create', caseController.create);
+router.post('/create', caseController.create_post);
 router.get("/:id", caseController.home);
 router.post("/:id", ensureAuthenticated, caseController.update);
-// router.get('/:id/delete', caseController.delete);
+// it is not possible to delete router.get('/:id/delete', caseController.delete);
+
 
 export default router;
