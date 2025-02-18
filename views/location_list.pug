@@ -10,7 +10,8 @@ block content
         img(src="/image/add-icon.svg" alt="Adicionar" width="16pt" height="20pt")
 
   dl
-  each val in allLocations
+  h2 Em montagem
+  each val in underConst
     dd
       a(href=val.url class='btn btn-primary')
         img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
@@ -18,6 +19,14 @@ block content
       if val.note.length > 0
         | &nbsp; &mdash; #[i #{val.note}]
 
+  h2 Fora de montagem
+  each val in otherLocations
+    dd
+      a(href=val.url class='btn btn-primary')
+        img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+      | &nbsp;  #{val.quant} &times; &nbsp; #{val.name}
+      if val.note.length > 0
+        | &nbsp; &mdash; #[i #{val.note}]
 
   else
     li Não existem localizações.

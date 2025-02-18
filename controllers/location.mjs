@@ -1,5 +1,5 @@
 import { seqlz } from '../db.mjs';
-import { QueryTypes} from 'sequelize';
+import { QueryTypes, Op} from 'sequelize';
 import Location from "../models/location.mjs";
 import asyncHandler from "express-async-handler";
 
@@ -7,10 +7,12 @@ const controller = {};
 
 // List all locations
 controller.list = asyncHandler(async (req, res, next) => {
-  const allLocations = await Location.findAll({order: seqlz.col('name')});
+  const otherLocations = await Location.findAll({where: {quant: 0}, order: seqlz.col('name')});
+  const underConst = await Location.findAll({where: {quant: {[Op.not]: 0}}, order: seqlz.col('name')});
   res.render("location_list", {
     user: req.user,
-    allLocations,
+    otherLocations,
+    underConst,
   });
 });
 
