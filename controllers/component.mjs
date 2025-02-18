@@ -22,10 +22,9 @@ controller.home = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  const [group, ccase, locEntries] =
+  const [group, ccase] =
     await Promise.all([Group.findOne({ where: { id: comp.group_id } }),
     Case.findOne({ where: { id: comp.case_id } }),
-    LocationEntry.findAll({ where: { component_id: comp.id } })
     ]);
 
   const suppliercodes = await seqlz.query("select sc.id, s.name as s_name, code, rounding, active, manufact_pn, m.name as m_name from suppliercodes as sc, suppliers as s, manufacturers as m where supplier_id = s.id and manufact_id=m.id and component_id = $1",
@@ -34,12 +33,11 @@ controller.home = asyncHandler(async (req, res, next) => {
       type: QueryTypes.SELECT
     });
 
-  let locList = [];
-  for (let le of locEntries) {
-    locList.push(le.location_id);
-  }
-
-  const locations = await Location.findAll({ where: { id: { [Op.in]: locList } } });
+  const locations = await seqlz.query("select lo.id, lo.name, le.box from location_entry as le, locations as lo where location_id = lo.id and component_id = $1",
+    {
+      bind: [comp.id],
+      type: QueryTypes.SELECT,
+    }); // await Location.findAll({ where: { id: { [Op.in]: locList } } });
   const allLocations = await Location.findAll({ order: [['name']] });
   const allCases = await Case.findAll({ order: [['name']] });
 
@@ -48,7 +46,6 @@ controller.home = asyncHandler(async (req, res, next) => {
     component: comp,
     group,
     ccase,
-    locEntries,
     locations,
     allCases,
     allLocations,
