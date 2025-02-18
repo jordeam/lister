@@ -23,8 +23,9 @@ controller.home = asyncHandler(async (req, res, next) => {
   }
 
   const [group, ccase] =
-    await Promise.all([Group.findOne({ where: { id: comp.group_id } }),
-    Case.findOne({ where: { id: comp.case_id } }),
+    await Promise.all([
+      Group.findOne({ where: { id: comp.group_id } }),
+      Case.findOne({ where: { id: comp.case_id } }),
     ]);
 
   const suppliercodes = await seqlz.query("select sc.id, s.name as s_name, code, rounding, active, manufact_pn, m.name as m_name from suppliercodes as sc, suppliers as s, manufacturers as m where supplier_id = s.id and manufact_id=m.id and component_id = $1",
@@ -33,7 +34,7 @@ controller.home = asyncHandler(async (req, res, next) => {
       type: QueryTypes.SELECT
     });
 
-  const locations = await seqlz.query("select lo.id, lo.name, le.box from location_entry as le, locations as lo where location_id = lo.id and component_id = $1",
+  const locations = await seqlz.query("select lo.id, lo.name, le.box, le.quant from location_entry as le, locations as lo where location_id = lo.id and component_id = $1",
     {
       bind: [comp.id],
       type: QueryTypes.SELECT,
