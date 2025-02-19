@@ -4,7 +4,7 @@ block content
   h1
     if locations.length === 0 && suppliercodes.length === 0
       a.btn.btn-primary(href="/component/"+component.id+"/delete" onclick="return confirm('Tem certeza que quer excluir o componente?')")
-        img(src="/image/trash-icon.svg" alt="Excluir" width="16pt" height="20pt")
+        img(src="/image/trash-icon.svg" alt="Excluir" width="20pt" height="24pt")
       | &nbsp;
     | #[Strong Componente:] #{component.name}
 
@@ -14,19 +14,20 @@ block content
       input#name.form-control(type='text', placeholder='Código do componente' name='name' required='true' value=(undefined===component ? '' : component.name) )
 
     button.btn.btn-primary(type='submit')
-      img(src="/image/ok-icon.svg" alt="Alterar" width="16pt" height="20pt")
+      img(src="/image/ok-icon.svg" alt="Alterar" width="20pt" height="24pt")
 
   hr
 
   p
-    a.btn.btn-primary(href='/group/' + component.group_id) G
+    a.btn.btn-primary(href='/group/' + component.group_id)
+      img(src="/image/group-icon.svg" alt="Grupo" width="20pt" height="24pt")
     | &nbsp; #[Strong Grupo:] #{group.name}
-
 
   hr
   h2 Case
   p
-    a.btn.btn-primary(href='/case/' + component.case_id) CS
+    a.btn.btn-primary(href='/case/' + component.case_id)
+      img(src="/image/case-icon.svg" alt="Case" width="20pt" height="24pt")
     | &nbsp; #[Strong Case:] #{ccase.name}
   form(name="change_case" method="post" action="/component/"+component.id+"/set_case")
     div.form-group

@@ -7,14 +7,17 @@ block content
     form(name="location_new" method="post" action="/location/create" onsubmit="return location_create(this);")
       input(type="hidden" name="locname" value="")
       button.btn.btn-primary(type="submit")
-        img(src="/image/add-icon.svg" alt="Adicionar" width="16pt" height="20pt")
+        img(src="/image/add-icon.svg" alt="Adicionar" width="20pt" height="24pt")
 
   dl
   h2 Em montagem
   each val in underConst
     dd
       a(href=val.url class='btn btn-primary')
-        img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+        img(src="/image/loc-icon.svg" alt="Ir" width="20pt" height="24pt")
+      | &nbsp;
+      a(href=val.url+"/table" class='btn btn-primary')
+        img(src="/image/table-icon.svg" alt="Ir" width="20pt" height="24pt")
       | &nbsp;  #{val.quant} &times; &nbsp; #{val.name}
       if val.note.length > 0
         | &nbsp; &mdash; #[i #{val.note}]
@@ -23,7 +26,10 @@ block content
   each val in otherLocations
     dd
       a(href=val.url class='btn btn-primary')
-        img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+        img(src="/image/loc-icon.svg" alt="Ir" width="20pt" height="24pt")
+      | &nbsp;
+      a(href=val.url+"/table" class='btn btn-primary')
+        img(src="/image/table-icon.svg" alt="Ir" width="20pt" height="24pt")
       | &nbsp;  #{val.quant} &times; &nbsp; #{val.name}
       if val.note.length > 0
         | &nbsp; &mdash; #[i #{val.note}]

@@ -4,12 +4,13 @@ block content
   h1
     if allComponents.length === 0
       a.btn.btn-primary(href=group.url+"/delete" onclick="return confirm('Tem certeza que quer excluir o grupo?')")
-        img(src="/image/trash-icon.svg" alt="Excluir" width="16pt" height="20pt")
+        img(src="/image/trash-icon.svg" alt="Excluir" width="20pt" height="24pt")
       | &nbsp;
     | #[Strong Grupo:] #{group.name}
 
   p
-    a(href=supergroup.url class='btn btn-primary') SG
+    a(href=supergroup.url class='btn btn-primary')
+      img(src="/image/sg-icon.svg" alt="Supergrupo" width="20pt" height="24pt")
     | &nbsp; #[Strong Supergrupo:] #{supergroup.name}
 
   p Lista dos componentes contidos neste grupo:
@@ -18,13 +19,13 @@ block content
     form(name="component_insert" method="post" action="/component/create/"+group.id onsubmit="return insert_component(this);")
       input(type="hidden" name="name" value="")
       button.btn.btn-primary(type="submit")
-        img(src="/image/add-icon.svg" alt="Adicionar" width="16pt" height="20pt")
+        img(src="/image/add-icon.svg" alt="Adicionar" width="20pt" height="24pt")
 
   dl
   each val in allComponents
     dd
       a.btn.btn-primary(href='/component/'+val.id)
-        img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+        img(src="/image/component-icon.svg" alt="Editar" width="20pt" height="24pt")
       | &nbsp; #{val.name}
 
   else

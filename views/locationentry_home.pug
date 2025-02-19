@@ -2,14 +2,19 @@ extends base
 
 block content
   h1
-    a(href=location.url class='btn btn-primary') L
+    a.btn.btn-primary(href=location.url)
+      img(src="/image/loc-icon.svg" alt="Localização" width="20pt" height="24pt")
+    | &nbsp;
+    a.btn.btn-primary(href=location.url+"/table")
+      img(src="/image/table-icon.svg" alt="Localização" width="20pt" height="24pt")
     | &nbsp; #[Strong Localização:] #{location.name}
 
   h2
-    a(href=component.url class='btn btn-primary') C
+    a(href=component.url class='btn btn-primary')
+      img(src="/image/component-icon.svg" alt="Componente" width="20pt" height="24pt")
     | &nbsp; #[Strong Componente:] #{component.name} (#{group.name})
 
-  form(method='POST' action= locationentry.url)
+  form(method='POST' action=locationentry.url+(from_table?"/table":""))
     div.form-group
       label(for='box') Caixa:
       input#name.form-control(type='text', placeholder='Número da caixa' name='box' required='true' value=(undefined===locationentry ? '' : locationentry.box) )
@@ -24,5 +29,5 @@ block content
       input#name.form-control(type='text', placeholder='Labels dos componentes' name='labels' value=(undefined===locationentry ? '' : locationentry.labels) )
 
     button.btn.btn-primary(type='submit')
-      img(src="/image/ok-icon.svg" alt="Alterar" width="16pt" height="20pt")
+      img(src="/image/ok-icon.svg" alt="Alterar" width="20pt" height="24pt")
 

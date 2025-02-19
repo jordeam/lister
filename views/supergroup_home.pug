@@ -4,7 +4,7 @@ block content
   h1
     if allGroups.length === 0
       a.btn.btn-primary(href=supergroup.url+"/delete" onclick="return confirm('Tem certeza que quer excluir o supergrupo?')")
-        img(src="/image/trash-icon.svg" alt="Excluir" width="16pt" height="20pt")
+        img(src="/image/trash-icon.svg" alt="Excluir" width="20pt" height="24pt")
       | &nbsp;
     | #[Strong Supergrupo:] #{supergroup.name}
 
@@ -14,13 +14,13 @@ block content
     form(method="post" action="/group/create/"+supergroup.id onsubmit="return insert_with_msg('Nome do novo grupo:', this.name);")
       input(type="hidden" name="name" value="")
       button.btn.btn-primary(type="submit")
-        img(src="/image/add-icon.svg" alt="Adicionar" width="16pt" height="20pt")
+        img(src="/image/add-icon.svg" alt="Adicionar" width="20pt" height="24pt")
 
   dl
   each val in allGroups
     dd
       a(href=val.url class='btn btn-primary')
-        img(src="/images/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+        img(src="/images/group-icon.svg" alt="Editar" width="24pt" height="24pt")
       | &nbsp; #{val.name}
 
   else

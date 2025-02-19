@@ -5,12 +5,12 @@ block content
     a.btn.btn-primary(href="/location")
       img(src="/image/back-icon.svg" alt="Voltar" width="20pt" height="24pt")
     | &nbsp;
-    a.btn.btn-primary(href=location.url+"/table")
-      img(src="/image/table-icon.svg" alt="Tabela" width="20pt" height="24pt")
+    a.btn.btn-primary(href=location.url)
+      img(src="/image/loc-icon.svg" alt="Localização" width="20pt" height="24pt")
     if entries.length === 0
       | &nbsp;
       a.btn.btn-primary(href=location.url+"/delete" onclick="return confirm('Tem certeza que quer excluir a localização?')" class='btn btn-primary')
-        img(src="/image/trash-icon.svg" alt="Excluir" width="20pt" height="24pt")
+        img(src="/image/trash-icon.svg" alt="Excluir" width="16pt" height="20pt")
     | &nbsp; #[Strong Localização:] #{location.name}
   form(name="alter" method="post" action=location.url)
     div.form-group
@@ -24,7 +24,7 @@ block content
       input#quant.form-control(type="text", placeholder="Nome" name="quant" required="true" value=(undefined===location ? '' : location.quant) )
 
       button(type="submit" class='btn btn-primary')
-        img(src="/image/ok-icon.svg" alt="Alterar" width="20pt" height="24pt")
+        img(src="/image/ok-icon.svg" alt="Alterar" width="16pt" height="20pt")
 
   p #[Strong Quantidade de caixas:] #{location.nbox}
 
@@ -33,19 +33,27 @@ block content
   a(href='/locationentry/create/'+location.id.toString() class='btn btn-primary')
     img(src="/image/add-icon.svg" alt="Adicionar" width="20pt" height="24pt")
 
-  dl
-  each val in entries
-    dd
-      a(href='/locationentry/'+val.id.toString() class='btn btn-primary')
-        img(src="/image/edit-icon.svg" alt="Editar" width="20pt" height="24pt")
-      | &nbsp;
-      a(href='/locationentry/'+val.id.toString()+'/delete' onclick="return confirm('Tem certeza que quer excluir a entrada?');" class='btn btn-primary')
-        img(src="/image/trash-icon.svg" alt="Excluir" width="20pt" height="24pt")
-      | &nbsp; #{val.gname}: &nbsp;
-      a(href='/component/' + val.component_id.toString()) #[Strong #{val.cname}]
-      | &nbsp; | #[Strong qt.:] #{val.quant}, #[Strong un.:] #{val.quant_unit}, #[Strong cx.:]#{val.box}, #[Strong labels:]#{val.labels}
-
-  else
-    li Não existem componentes nesta localização.
+  table
+    tr
+      th Grupo
+      th Componente
+      th Case
+      th Cx.
+      th Qt.
+      th Un.
+      th Saldo
+    each val in entries
+      tr
+        td #{val.gname}
+        td
+          a(href='/component/' + val.component_id) #[Strong #{val.cname}]
+        td &nbsp;
+          if val.csname != "not set"
+            | #{val.csname}
+        td(align="center") #{val.box}
+        td
+          a.btn(style="background: #0bb;" href="/locationentry/"+val.id+"/table") #{val.quant}
+        td(align="center") #{val.quant_unit}
+        td(align="center") #{val.quant - val.quant_unit * location.quant}
 
   script(src="/script/component_new.js")

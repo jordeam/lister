@@ -21,7 +21,7 @@ controller.home = asyncHandler(async (req, res, next) => {
   // Get details of supergroup and all associated pets (in parallel)
   const [entries, loc] =
         await Promise.all(
-            [seqlz.query("select location_entry.id, components.name as cname,groups.name as gname,component_id,quant,quant_unit,box,labels from location_entry, components, groups where component_id = components.id and group_id = groups.id and location_id=? order by groups.name, components.name",
+            [seqlz.query("SELECT location_entry.id, components.name AS cname,groups.name AS gname, component_id, quant, quant_unit, box,labels, cs.name AS csname FROM location_entry, components, groups, cases AS cs WHERE component_id = components.id AND group_id = groups.id AND case_id = cs.id AND location_id = ? ORDER BY groups.name, components.name",
                              { replacements: [req.params.id],
                                type: QueryTypes.SELECT }),
              Location.findOne({where: {id: req.params.id}})]);
@@ -32,7 +32,8 @@ controller.home = asyncHandler(async (req, res, next) => {
     return next(err);
   }
 
-  res.render("location_home", {
+  const pugURL = /table$/.test(req.originalUrl) ? "location_table" : "location_home";
+  res.render(pugURL, {
     user: req.user,
     location: loc,
     entries,

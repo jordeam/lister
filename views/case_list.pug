@@ -4,13 +4,13 @@ block content
   h1 Lista de Invólucros
 
   a.btn.btn-primary(href='/case/create')
-    img(src="/image/add-icon.svg" alt="Adicionar" width="16pt" height="20pt")
+    img(src="/image/add-icon.svg" alt="Adicionar" width="20pt" height="24pt")
 
   dl
   each val in cases_list
     dd
       a(href='/case/'+val.id class='btn btn-primary')
-        img(src="/image/edit-icon.svg" alt="Editar" width="16pt" height="20pt")
+        img(src="/image/edit-icon.svg" alt="Editar" width="20pt" height="24pt")
       | &nbsp; #{val.name}
       if val.descr.length > 0
         | &nbsp; &mdash; #[i #{val.descr}]

@@ -25,12 +25,16 @@ controller.home = asyncHandler(async (req, res, next) => {
       Location.findOne({ where: { id: locationEntry.location_id } })]);
 
   const group = await Group.findOne({ where: { id: component.group_id } });
+
+  const from_table = /table$/.test(req.originalUrl);
+
   res.render("locationentry_home", {
     user: req.user,
     locationentry: locationEntry,
     location,
     component,
     group,
+    from_table,
   });
 });
 
@@ -50,7 +54,8 @@ controller.update = asyncHandler(async (req, res, next) => {
   locationEntry.labels = req.body.labels;
   await locationEntry.save();
 
-  res.redirect('/location/' + locationEntry.location_id.toString());
+  const retURL = "/location/" + locationEntry.location_id + (/table$/.test(req.originalUrl) ? "/table" : "");
+  res.redirect(retURL);
 });
 
 controller.delete = asyncHandler(async (req, res, next) => {

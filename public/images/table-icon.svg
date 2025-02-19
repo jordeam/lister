@@ -3,7 +3,7 @@
 
 <svg
    id="svg4847"
-   sodipodi:docname="loc-icon.svg"
+   sodipodi:docname="ltable-icon.svg"
    viewBox="0 0 620.77863 794.62402"
    version="1.1"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
@@ -32,7 +32,7 @@
      showgrid="false"
      borderopacity="1.0"
      inkscape:current-layer="layer1"
-     inkscape:cx="330.79609"
+     inkscape:cx="330.7961"
      inkscape:cy="423.79947"
      fit-margin-top="0"
      fit-margin-right="0"
@@ -48,29 +48,21 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      transform="translate(-105.03,-121.31)">
-    <rect
-       style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:18.75;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       id="rect13619"
-       width="543.94739"
-       height="674.63062"
-       x="143.44563"
-       y="181.3067"
-       ry="37.138145" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:18.75;stroke-linecap:square"
-       d="m 279.82318,184.37384 v 258.03754 m 0,152.12316 v 258.33563"
+       d="m 279.82318,184.37384 c 0,222.83211 0,445.66422 0,668.49633"
        id="path1287"
-       sodipodi:nodetypes="cccc" />
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:18.75;stroke-linecap:square"
-       d="m 415.90595,184.37384 v 256.06779 m 0,154.29792 v 258.13062"
+       d="m 415.90595,184.37384 c 0,222.83211 0,445.66422 0,668.49633"
        id="path1287-3"
-       sodipodi:nodetypes="cccc" />
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:18.75;stroke-linecap:square"
-       d="m 551.98872,184.37384 0,258.32212 m 0,151.79297 v 258.38124"
+       d="m 551.98872,184.37384 c 0,222.83211 0,445.66422 0,668.49633"
        id="path1287-6"
-       sodipodi:nodetypes="cccc" />
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:18.75;stroke-linecap:square"
        d="M 145.35234,315.78952 H 685.48632"
