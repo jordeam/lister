@@ -19,9 +19,7 @@ block content
         td #{val.gname}
         td
           a(href='/component/' + val.id) #[Strong #{val.cname}]
-        td &nbsp;
-          if val.case_name != "not set"
-            | #{val.case_name}
+        td &nbsp; #{val.case_name}
         td(align="right") #{val.stock}
         td(align="right") #{val.needed}
         td(align="right") #{val.to_buy}

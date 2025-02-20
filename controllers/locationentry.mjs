@@ -1,6 +1,9 @@
+import { seqlz } from '../db.mjs';
+import { QueryTypes } from 'sequelize';
 import Location from "../models/location.mjs";
 import LocationEntry from "../models/locationentry.mjs";
 import Component from "../models/component.mjs";
+import Case from "../models/case.mjs";
 import asyncHandler from "express-async-handler";
 import Group from '../models/group.mjs';
 import SuperGroup from '../models/supergroup.mjs';
@@ -21,10 +24,11 @@ controller.home = asyncHandler(async (req, res, next) => {
 
   const [component, location] =
     await Promise.all(
-      [Component.findOne({ where: { id: locationEntry.component_id } }),
+      [Component.findOne({ where: { id: locationEntry.component_id }}),
       Location.findOne({ where: { id: locationEntry.location_id } })]);
 
-  const group = await Group.findOne({ where: { id: component.group_id } });
+  const ccase = await Case.findOne({ where: { id: component.case_id }});
+  const group = await Group.findOne({ where: { id: component.group_id }});
 
   const from_table = /table$/.test(req.originalUrl);
 
@@ -33,6 +37,7 @@ controller.home = asyncHandler(async (req, res, next) => {
     locationentry: locationEntry,
     location,
     component,
+    ccase,
     group,
     from_table,
   });
@@ -73,7 +78,7 @@ controller.delete = asyncHandler(async (req, res, next) => {
   res.redirect('/location/' + id.toString());
 });
 
-
+// Insert a new location_entry, i.e., a new component in a location
 controller.choose = asyncHandler(async (req, res, next) => {
   const location = await Location.findOne({ where: { id: req.params.location_id } });
   const allSuperGroups = await SuperGroup.findAll({ order: [['name']] });
@@ -81,7 +86,13 @@ controller.choose = asyncHandler(async (req, res, next) => {
   const allGroups = await Group.findAll({ where: { supergroup_id: default_supergroup }, order: [['name']] });
   const default_group = 6;
 
-  const allComponents = await Component.findAll({ where: { group_id: default_group }, order: [['name']] });
+  const allComponents = await seqlz.query(
+    "SELECT c.id, c.name, cs.name AS csname FROM components AS c, cases AS cs WHERE group_id = $1 AND cs.id = case_id ORDER BY c.name, cs.name",
+    {
+      bind: [default_group],
+      type: QueryTypes.SELECT,
+    }
+  );
 
   res.render('locationentry_choose', {
     user: req.user,

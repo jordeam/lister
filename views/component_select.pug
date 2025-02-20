@@ -1,3 +1,6 @@
 select(name="component_id")
   each comp in components
-    option(value=comp.id) #{comp.name}
+    option(value=comp.id)
+      | #{comp.name}
+      if comp.csname.length > 0
+        | &nbsp; &mdash; #{comp.csname}

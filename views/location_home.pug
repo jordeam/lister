@@ -42,8 +42,11 @@ block content
       a(href='/locationentry/'+val.id.toString()+'/delete' onclick="return confirm('Tem certeza que quer excluir a entrada?');" class='btn btn-primary')
         img(src="/image/trash-icon.svg" alt="Excluir" width="20pt" height="24pt")
       | &nbsp; #{val.gname}: &nbsp;
-      a(href='/component/' + val.component_id.toString()) #[Strong #{val.cname}]
-      | &nbsp; | #[Strong qt.:] #{val.quant}, #[Strong un.:] #{val.quant_unit}, #[Strong cx.:]#{val.box}, #[Strong labels:]#{val.labels}
+      a(href='/component/' + val.component_id) #[Strong #{val.cname}]
+      | &nbsp;
+      if val.csname.length > 0
+        | &mdash; #{val.csname}
+      | &nbsp; | #[Strong qt.:] #{val.quant}, #[Strong un.:] #{val.quant_unit}, #[Strong cx.:]#{val.box}, #{val.labels}
 
   else
     li Não existem componentes nesta localização.

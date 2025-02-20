@@ -1,5 +1,5 @@
 import { seqlz } from '../db.mjs';
-import {QueryTypes, Op} from 'sequelize';
+import { QueryTypes } from 'sequelize';
 import Location from "../models/location.mjs";
 import Case from '../models/case.mjs';
 import Group from '../models/group.mjs';
@@ -67,12 +67,18 @@ controller.update = asyncHandler(async (req, res, next) => {
 // Paramameters:
 // :id is the id of group
 controller.select = asyncHandler(async (req, res, next) => {
-    const allComponents = await Component.findAll({where: {group_id: req.params.id}, order: [['name']]});
+  const allComponents = await seqlz.query(
+    "SELECT c.id, c.name, cs.name AS csname FROM components AS c, cases AS cs WHERE group_id = $1 AND cs.id = case_id ORDER BY c.name, cs.name",
+    {
+      bind: [req.params.id],
+      type: QueryTypes.SELECT,
+    }
+  );
 
-    res.render('component_select', {
-      user: req.user,
-      components: allComponents
-    });
+  res.render('component_select', {
+    user: req.user,
+    components: allComponents
+  });
 });
 
 // Paramameters:

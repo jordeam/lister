@@ -12,7 +12,10 @@ block content
   h2
     a(href=component.url class='btn btn-primary')
       img(src="/image/component-icon.svg" alt="Componente" width="20pt" height="24pt")
-    | &nbsp; #[Strong Componente:] #{component.name} (#{group.name})
+    | &nbsp; #[Strong Componente:] #{component.name}
+    if ccase.name.length > 0
+      | &nbsp; &mdash; #{ccase.name} &nbsp;
+    | (#{group.name})
 
   form(method='POST' action=locationentry.url+(from_table?"/table":""))
     div.form-group

@@ -47,9 +47,7 @@ block content
         td #{val.gname}
         td
           a(href='/component/' + val.component_id) #[Strong #{val.cname}]
-        td &nbsp;
-          if val.csname != "not set"
-            | #{val.csname}
+        td &nbsp; #{val.csname}
         td(align="center") #{val.box}
         td
           a.btn(style="background: #0bb;" href="/locationentry/"+val.id+"/table") #{val.quant}

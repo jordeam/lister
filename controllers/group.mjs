@@ -1,6 +1,8 @@
+import { seqlz } from '../db.mjs';
+import { QueryTypes } from 'sequelize';
 import Group from "../models/group.mjs";
 import SuperGroup from "../models/supergroup.mjs";
-import Component from "../models/component.mjs";
+
 import asyncHandler from "express-async-handler";
 
 const controller = {};
@@ -8,7 +10,15 @@ const controller = {};
 // List components of a specific group
 controller.home = asyncHandler(async (req, res, next) => {
   // Get details of supergroup and all associated pets (in parallel)
-  const [allComponents, group] = await Promise.all([Component.findAll({ where: { group_id: req.params.id }, order: [['name']] }), Group.findOne({ where: { id: req.params.id } })]);
+  const allComponents = await seqlz.query(
+    "SELECT c.id, c.name, cs.name AS csname FROM components AS c, cases AS cs WHERE group_id = $1 AND cs.id = case_id ORDER BY c.name, cs.name",
+    {
+      bind: [req.params.id],
+      type: QueryTypes.SELECT,
+    }
+  );
+
+  const group = await Group.findOne({ where: { id: req.params.id } });
 
   if (group === null) {
     // No results.

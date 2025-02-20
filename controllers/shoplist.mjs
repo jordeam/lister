@@ -30,10 +30,7 @@ controller.csv = asyncHandler(async (req, res, next) => {
   shoplist.forEach((elt) => {
     // populating the CSV content
     // and converting the null fields to ""
-    if (elt.case_name === "not set" || elt.case_name=="Unknown")
-      csvData += [elt.gname, '"'+elt.cname+'"', "", elt.stock, elt.needed, elt.to_buy].join(",") + "\r\n";
-    else
-      csvData += [elt.gname, '"'+elt.cname+'"', '"'+elt.case_name+'"', elt.stock, elt.needed, elt.to_buy].join(",") + "\r\n";
+    csvData += [elt.gname, '"'+elt.cname+'"', '"'+elt.case_name+'"', elt.stock, elt.needed, elt.to_buy].join(",") + "\r\n";
   });
 
   // returning the CSV content via the "users.csv" file
