@@ -46,7 +46,7 @@ block content
       | &nbsp;
       if val.csname.length > 0
         | &mdash; #{val.csname}
-      | &nbsp; | #[Strong qt=]#{val.quant}, #{val.quant_unit}#[Strong /p], #[Strong cx:]#{val.box}; #{val.labels}
+      | &nbsp; |  #{val.quant_unit}&times;&square;, #[Strong qt=]#{val.quant}, #[Strong cx:]#{val.box} &nbsp; | #{val.labels}
 
   else
     li Não existem componentes nesta localização.
